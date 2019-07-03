@@ -10,7 +10,9 @@ vConsole(router);
 
 
 
-
+<img src="./doc/console.png" > 
+<img src="./doc/network.png" > 
+<img src="./doc/location.png" > 
 
 
 
