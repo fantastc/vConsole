@@ -1,0 +1,48 @@
+
+.options {
+  height: 3vh;
+  display: flex;
+}
+.optTl {
+  margin-right: 3em;
+  padding: 0 1em;
+}
+.optFlts {
+  display: flex;
+}
+.optFlt {
+  padding: 0 0.5em;
+}
+
+.body {
+  /* flex-grow: 1;  */
+  /* flex-shrink: 0; */
+  position: absolute;
+  top: 3vh;
+  bottom: 15vh;
+  left: 0;
+  width: 100%;
+  overflow: scroll;
+  outline: 1px solid #000;
+}
+.bdItm {
+  box-sizing: border-box;
+  max-height: 5em;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+  /* text-indent: -1em; */
+  position: relative;
+}
+
+.footer {
+  height: 15vh;
+  width: 100%; 
+  position: fixed; 
+  left: 0; 
+  bottom: 0; 
+  display: flex;
+  flex-direction: column;
+}
+
+
+

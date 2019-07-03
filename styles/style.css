@@ -1,0 +1,38 @@
+
+.vConsole textarea {
+  box-sizing: border-box;
+  width: 100%;
+  display: inline-block;
+}
+.vConsole pre {
+  margin: 0.2em 0; 
+  padding: 0;
+}
+.vConsole .colorRed {
+  color: red;
+}
+.vConsole .colorMain {
+  color: #2ab7fc;
+}
+.vConsole .pointer {
+  cursor: pointer;
+}
+
+.vConsole .flexgrow {
+  flex-grow: 1; 
+}
+.vConsole .alignCenter {
+  align-items: center;
+}
+.vConsole .justifyCenter {
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
