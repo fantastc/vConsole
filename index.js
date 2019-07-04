@@ -6,12 +6,12 @@ import index from "./index.vue";
 export default function(router){
   // console.log('router',router);
   let div = document.createElement("div")
-  div.id = '_vConsole'
+  div.id = '_vmc'
   document.body.appendChild(div);
   new Vue({
     router,
     render: h=>h(index),
-  }).$mount('#_vConsole');
+  }).$mount('#_vmc');
 }
 
 

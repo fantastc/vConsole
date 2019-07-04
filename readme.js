@@ -4,9 +4,9 @@
 
 
 // 使用方式: 
-import vConsole from "./components/vConsole/index.js";
+import Vmc from "./components/vmc/index.js";
 // import router from './router/index.js'; // 项目的路由 
-vConsole(router); 
+Vmc(router); 
 
 
 

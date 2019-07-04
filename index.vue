@@ -2,7 +2,7 @@
   
 -->
 <template lang="html"> 
-<section class="vConsole"> 
+<section class="_vmc_"> 
   <div class="wrap" v-show="isShow">
     <div class="header"> 
       <div :class="['cardItm',activTabIdx===idx?'activeCard':'']" 
@@ -18,7 +18,7 @@
     </div>
   </div>
   
-  <div class="switchBtn" @click="switchConsole"> Console </div>
+  <div class="switchBtn" @click="switchConsole"> VMC </div>
 </section> 
 </template> 
 
@@ -56,7 +56,7 @@ export default {
 </script> 
 
 <style scoped> 
-  .vConsole { }
+  ._vmc_ { }
   .wrap {
     background-color: rgba(0, 0, 0, 0.6);
     width: 100vw;
