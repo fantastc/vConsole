@@ -12,9 +12,12 @@
       </div>
     </div>
     <div class="tabWp">
-      <LogPrint v-show="activTabIdx===0"></LogPrint>
+      <component v-for="(itm,key) in tabList" :key="key" 
+        :is="itm" v-show="key===activTabIdx">
+      </component>
+      <!-- <Console v-show="activTabIdx===0"></Console>
       <Network v-show="activTabIdx===1"></Network>
-      <Location v-show="activTabIdx===2"></Location>
+      <Location v-show="activTabIdx===2"></Location> -->
     </div>
   </div>
   
@@ -30,8 +33,10 @@ export default {
       
       tabList: [
         'Console',
+        'Element',
         'Network',
-        'Location',
+        'Routes',
+        'Storage',
       ],
       activTabIdx: 0, 
     };
@@ -48,9 +53,11 @@ export default {
   beforeCreate(){ },
   created(){ },
   components: {
-    LogPrint: ()=>import('./tabs/Console.vue'),
+    Console: ()=>import('./tabs/Console.vue'),
+    Element: ()=>import('./tabs/Element.vue'),
     Network: ()=>import('./tabs/Network.vue'),
-    Location: ()=>import('./tabs/Location.vue'),
+    Routes: ()=>import('./tabs/Routes.vue'),
+    Storage: ()=>import('./tabs/Storage.vue'),
   },
 };
 </script> 

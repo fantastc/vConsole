@@ -4,15 +4,16 @@
 <template> 
 <section class="catalogItem"> 
   <div class="path" v-for="(val,key) in pathArr" :key="key" >
-    <span @click="clickPreIcon(val)">
-      <span class="routeName" >
+    <div class="">
+      <span class="routeName" @click="clickPreIcon(val)">
         {{ val.children.length ? '▶' : '▷'}}
         {{ val.meta ? (val.meta.pageName||'未定义') : (val.name||'未命名') }} : 
       </span>
-    </span>
-    <RouterLink class="link colorMain" :to="currentPath(val)" > 
-      {{ currentPath(val) }} 
-    </RouterLink>
+      <RouterLink class="link colorMain" :to="currentPath(val)" > 
+        {{ currentPath(val) }} 
+      </RouterLink>
+      <span class="pointer" @click="routerReplace(val)"> ◆◆◆ </span>
+    </div>
     <CatalogItem v-if="isShowMore(val)" v-show="val.showChild" 
       :paths="val.children" 
       :prePath="currentPath(val)">
@@ -65,6 +66,10 @@ export default {
       else {
         return this.prePath+'/'+val.path
       }
+    },
+    routerReplace(val){
+      let path = this.currentPath(val);
+      this.$router.replace(path);
     },
     isShowMore(val){
       return val.children && val.children.length>0

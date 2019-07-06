@@ -2,7 +2,7 @@
   
 -->
 <template lang="html"> 
-<section class="Location"> 
+<section class="Routes"> 
   <div class="options">
     <button type="button" class="optBtn" @click="refresh">刷新</button>
     <textarea class="flexgrow" rows="2" v-model="currentPageURL"></textarea>
@@ -13,15 +13,22 @@
     <!-- 待嵌入vue路由 -->
     <Catalog></Catalog>
   </div>
-  <!-- <div class="footer"> </div> -->
+  <div class="footer indent"> 
+    <div class=""> navigator.appVersion: {{appVersion}}</div>
+    <div class=""> navigator.userAgent: {{userAgent}}</div>
+  </div>
 </section> 
 </template> 
 
 <script> 
 export default {
+  name: 'Routes',
   data(){ 
     return {
       currentPageURL: location.href,
+      
+      appVersion: '',
+      userAgent: '',
     };
   },
   computed: { },
@@ -33,6 +40,9 @@ export default {
     window.addEventListener("popstate",this.updateURL);
     window.addEventListener("pushState",this.updateURL);
     window.addEventListener("replaceState",this.updateURL);
+    
+    this.appVersion = window.navigator.appVersion;
+    this.userAgent = window.navigator.userAgent;
   },
   methods: {
     updateURL(){
@@ -59,7 +69,7 @@ export default {
 
 <style scoped> 
   @import "./common.css";
-  .Location {
+  .Routes {
   }
   .options {
     height: 4.5vh;
@@ -70,6 +80,12 @@ export default {
   .body {
     top: 4.5vh;
     bottom: 0;
+  }
+  .footer {
+    border-top: 1px solid #ccc;
+    padding: 0 0.5em 0.5em 2em;
+    box-sizing: border-box;
+    font-size: 12px;
   }
 </style> 
 <style > 

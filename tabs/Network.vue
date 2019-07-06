@@ -58,6 +58,7 @@
 <script> 
 import {dealResponse,} from "../scripts/tool.js";
 export default {
+  name: 'Network',
   data(){ 
     return {
       filter: {

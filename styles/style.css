@@ -17,6 +17,12 @@
 ._vmc_ .pointer {
   cursor: pointer;
 }
+._vmc_ .indent {
+  text-indent: -2em;
+}
+._vmc_ .inline {
+  display: inline;
+}
 
 ._vmc_ .flexgrow {
   flex-grow: 1; 

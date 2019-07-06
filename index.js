@@ -1,10 +1,8 @@
 // 用于移动端调试使用 
 import './scripts/preset.js';
-import Vue from "vue";
 import index from "./index.vue";
 
-export default function(router){
-  // console.log('router',router);
+export default function(Vue,router){
   let div = document.createElement("div")
   div.id = '_vmc'
   document.body.appendChild(div);
