@@ -1,4 +1,4 @@
-
+<h1>Vue Mobile Console</h1>
 <h1>Vue项目的移动端调试控制台</h1>
 
 
