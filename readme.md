@@ -4,9 +4,10 @@
 
 <pre>
 // 使用方式: 
-import Vmc from "./components/vmc/index.js";
+// import Vue from 'vue'; // 项目的路由 
 // import router from './router/index.js'; // 项目的路由 
-Vmc(router); 
+import Vmc from "./components/vmc/index.js";
+Vmc(Vue,router); 
 </pre>
 
 <img src="./doc/console.png" > 
