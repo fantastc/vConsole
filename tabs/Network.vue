@@ -161,7 +161,6 @@ export default {
   
   .bdItm {
     padding-left: 0;
-    max-height: none;
     border-bottom: 1px solid #ccc;
   }
   .url {

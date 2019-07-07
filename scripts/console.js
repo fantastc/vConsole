@@ -11,23 +11,14 @@ let _warn = console.warn;
 let _err = console.error;
 console.log = (...args)=>{
   _log('~',...args);
-  window._logList.push({
-    type: 'log',
-    msgs: args.map( itm=>itm+'' ),
-  })
+  window._logList.push({ type: 'log', msgs: args, })
 }
 console.warn = (...args)=>{
   _warn('~',...args);
-  window._logList.push({
-    type: 'warn',
-    msgs: args.map( itm=>itm+'' ),
-  })
+  window._logList.push({ type: 'warn', msgs: args, })
 }
 console.error = (...args)=>{
   _err('~',...args);
-  window._logList.push({
-    type: 'error',
-    msgs: args.map( itm=>itm+'' ),
-  })
+  window._logList.push({ type: 'error', msgs: args, })
 }
 

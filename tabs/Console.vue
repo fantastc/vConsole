@@ -17,7 +17,7 @@
       v-show="filter[itm.type].value">
       <span class="bdItmTl"> {{key}}: </span>
       <div :class="['bdItmCt',itm.type]">
-        <pre><span class="part" v-for="(itm1,key1) in itm.msgs" :key="key1" >~{{itm1}} </span></pre>
+        <VMCLog v-for="(val,key1) in itm.msgs" :key="key1" :logVal="val"></VMCLog>
       </div>
     </div>
   </div>
@@ -34,6 +34,7 @@
 
 <script> 
 export default {
+  name: 'VMCConsole',
   data(){ 
     return {
       filter: {
@@ -60,14 +61,21 @@ export default {
       console.log( '执行结果:', window.eval( this.jsStrCode ) );
     },
   },
+  components: {
+    VMCLog: ()=>import('./log/VMCLog.vue'),
+  },
 };
 </script> 
 
 <style scoped> 
   @import "./common.css";
   .Console {
+    font-size: 13px;
   }
   
+  .bdItm {
+    border-bottom: 1px solid #ccc;
+  }
   .bdItmTl {
     color: #a0c7b6;
     position: absolute;
@@ -75,20 +83,15 @@ export default {
     left: 0; 
   }
   .bdItmCt {
-    overflow: scroll;
-    max-height: 5em;
   }
   
   .codeArea {
     flex-grow: 1;
   }
   
-  .log:first-line { color: #2ab7fc; }
-  .warn:first-line { color: yellow; }
-  .err:first-line { color: red; }
-  .part {
-    margin-right: 0.2em; 
-  }
+  /* .log { color: #2ab7fc; } */
+  .warn { color: yellow; }
+  .error { color: red; }
 </style> 
 <style > 
 </style> 
