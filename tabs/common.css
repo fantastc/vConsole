@@ -2,9 +2,10 @@
 .options {
   height: 3vh;
   display: flex;
+  justify-content: flex-end;
 }
 .optTl {
-  margin-right: 3em;
+  margin-left: 3em;
   padding: 0 1em;
 }
 .optFlts {

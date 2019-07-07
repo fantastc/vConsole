@@ -5,7 +5,7 @@
 <!-- 元素节点 -->
 <div class="_vmc_elem" v-if="node.nodeType===1"> 
   <template v-if="node.childNodes && node.childNodes.length>0">
-    <span class="_vmc_tagTitle">&lt;{{node.tagName | toLower}} 
+    <span class="_vmc_tagTitle"><span class="">▶</span>&lt;{{node.tagName | toLower}} 
       <template v-if="node.attributes"> 
         <span class="_vmc_tagAttr" v-for="(itm,key) in node.attributes">
           {{itm.nodeName}}{{itm.nodeValue?'="'+itm.nodeValue+'"':''}} 
@@ -14,7 +14,7 @@
       <span class="_vmc_tagTitle_sub">... &lt;/{{node.tagName | toLower}}&gt;</span> 
     </span>
     <div class="_vmc_tagContent" style="display:none;" >
-      <Tag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" > </Tag>
+      <VMCElemTag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" > </VMCElemTag>
       &lt;/{{node.tagName | toLower}}&gt;
     </div>
   </template>
@@ -28,7 +28,7 @@
 
 <script> 
 export default {
-  name: 'Tag',
+  name: 'VMCElemTag',
   props: {
     node: {
       default(){ return {};},
@@ -49,6 +49,10 @@ export default {
       return true;
     },
   },
+  watch: { },
+  updated(){
+    this.$emit('updated','');
+  },
   methods: { },
   filters: {
     toLower(val){
@@ -65,8 +69,24 @@ export default {
 </script> 
 
 <style scoped> 
-  ._vmc_elem, ._vmc_text, ._vmc_comment {
+  ._vmc_elem {
     margin-left: 1em;
+  }
+  ._vmc_text, ._vmc_comment {
+    max-width: 100vw;
+    max-height: 50vh;
+    overflow: scroll;
+    display: inline-block;
+    margin-left: 1em;
+  }
+  ._vmc_tagTitle {
+    white-space: nowrap;
+  }
+  ._vmc_tagContent {
+    /* white-space: nowrap; */
+    /* max-width: 100vw;
+    max-height: 100vh;
+    overflow: scroll; */
   }
   ._vcm_outerHTML {
     white-space: nowrap;

@@ -4,30 +4,42 @@
 <template lang="html"> 
 <section class="Network"> 
   <div class="options">
-    <div class="optTl pointer" @click="clearLogs"> 清空 </div>
     <div class="optFlts">
       <label class="optFlt" v-for="(itm,key) in filter" :key="key"> 
         <input type="checkbox" v-model="itm.value">{{itm.label}} 
       </label>
     </div>
+    <div class="optTl pointer" @click="clearLogs"> 清空 </div>
   </div>
   
   <div class="body" > 
     <div class="bdItm" v-for="(itm,idx) in netList" :key="idx" v-show="filter[itm.type].value">
       <div class="line url">
         <span class="lineTl ">{{idx}}: </span>
-        <div class="lineCt"> {{itm.url}} </div>
+        <div class="lineCt"> {{itm.method}}: {{itm.url}} </div>
        </div>
-      <div class="line "> 
-        <span class="lineTl ">req: </span>
-        <div class="lineCt lCt1">
-          <pre>{{itm.req}}</pre> 
+      <div class="lineWp" style="display:block;">
+        <div class="line lineItems"> 
+          <span class="lineItm"> Status: {{itm.status}} </span>
+          <span class="lineItm"> Time: {{itm.time}} </span>
         </div>
-      </div>
-      <div class="line "> 
-        <span class="lineTl ">res: </span>
-        <div class="lineCt lCt2">
-          <pre>{{itm.res}}</pre> 
+        <div class="line "> 
+          <span class="lineTl ">Req: </span>
+          <div class="lineCt lCt1">
+            <pre>{{itm.req}}</pre> 
+          </div>
+        </div>
+        <div class="line "> 
+          <span class="lineTl ">Hds: </span>
+          <div class="lineCt lCt1">
+            <pre>{{itm.headers}}</pre> 
+          </div>
+        </div>
+        <div class="line "> 
+          <span class="lineTl ">Res: </span>
+          <div class="lineCt lCt2">
+            <pre>{{itm.res}}</pre> 
+          </div>
         </div>
       </div>
     </div>
@@ -58,7 +70,6 @@
 <script> 
 import {dealResponse,} from "../scripts/tool.js";
 export default {
-  name: 'Network',
   data(){ 
     return {
       filter: {
@@ -75,6 +86,27 @@ export default {
         res: '',
       },
     };
+  },
+  mounted(){
+    this.$el.addEventListener("click",(evt)=>{
+      let _title = null; 
+      if (evt.target.getAttribute("class")==='line url') {
+        _title = evt.target;
+      }
+      else if (evt.target.parentElement.getAttribute("class")==='line url') {
+        _title = evt.target.parentElement;
+      }
+      if (!_title) { return ; }
+      
+      let _content = _title.nextElementSibling; 
+      if (_content.style.display==='none') {
+        _content.style.display = 'block';
+      }
+      else {
+        _content.style.display = 'none';
+      }
+      
+    })
   },
   methods: {
     clearLogs(){
@@ -118,8 +150,13 @@ export default {
 <style scoped> 
   @import "./common.css";
   .Network {
+    font-size: 12px;
     display: flex;
     flex-direction: column;
+  }
+  
+  .options {
+    font-size: 14px;
   }
   
   .bdItm {
@@ -134,14 +171,22 @@ export default {
   }
   .line {
     box-sizing: border-box;
-    padding-left: 2em;
+    padding-left: 2.5em;
     margin-bottom: 0.5em;
     position: relative;
   }
+  .lineItems {
+    padding: 0 3em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+  }
+  .lineItm { }
   .lineTl {
     color: gold;
     position: absolute;
     top: 0; left: 0; 
+    z-index: -1;
   }
   .lineCt {
     overflow: scroll;
@@ -149,10 +194,10 @@ export default {
     min-height: 1.3em;
   }
   .lCt1 {
-    max-height: 5em;
+    max-height: 8em;
   }
   .lCt2 {
-    max-height: 8em;
+    max-height: 15em;
   }
   
   .ftLine {

@@ -22,7 +22,6 @@
 
 <script> 
 export default {
-  name: 'Routes',
   data(){ 
     return {
       currentPageURL: location.href,

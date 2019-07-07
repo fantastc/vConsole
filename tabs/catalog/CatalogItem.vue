@@ -14,10 +14,10 @@
       </RouterLink>
       <span class="pointer" @click="routerReplace(val)"> ◆◆◆ </span>
     </div>
-    <CatalogItem v-if="isShowMore(val)" v-show="val.showChild" 
+    <VMCCatalogItem v-if="isShowMore(val)" v-show="val.showChild" 
       :paths="val.children" 
       :prePath="currentPath(val)">
-    </CatalogItem>
+    </VMCCatalogItem>
   </div>
 </section> 
 </template> 
@@ -25,7 +25,7 @@
 
 <script> 
 export default {
-  name: 'CatalogItem',
+  name: 'VMCCatalogItem',
   props: {
     paths: {
       default(){ return [] }

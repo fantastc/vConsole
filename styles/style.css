@@ -23,6 +23,10 @@
 ._vmc_ .inline {
   display: inline;
 }
+._vmc_ .rotate90 {
+  display: inline-block;
+  transform: rotate(90deg);
+}
 
 ._vmc_ .flexgrow {
   flex-grow: 1; 

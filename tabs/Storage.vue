@@ -27,7 +27,6 @@
 
 <script> 
 export default {
-  name: 'Storage',
   data(){ 
     return {
       optionList: [

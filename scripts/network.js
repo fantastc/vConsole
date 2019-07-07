@@ -3,19 +3,19 @@ import { dealResponse, } from "./tool.js";
 
 window._netList = [ // AJAX请求 
   // {
-  //  type: 'xhr',
+  //  type: 'xhr', // xhr js 
   //  
   //   url: '',
+  //   method: '',
+  //   status: '',
+  //   time: '',
+  //   headers: '',
   //   req: '',
   //   res: '',
+  // 
+  //   _xhr: <obj>,
   // },
-  // {
-  //  type: 'js',
-  //  
-  //   url: '',
-  //   req: '',
-  //   res: '',
-  // },
+  // 
 ];
 
 // xhr连接 
@@ -24,8 +24,12 @@ window.XMLHttpRequest.prototype.open = new Proxy(window.XMLHttpRequest.prototype
     window._netList.push({
       type: 'xhr',
       url: args[1],
+      method: args[0],
+      status: `${context.status} ${context.statusText}`, 
+      time: Date.now(),
+      headers: '',
       req: '',
-      res: '',
+      res: 'pending',
       
       _xhr: context, 
     })
@@ -89,6 +93,9 @@ Object.defineProperty(window.XMLHttpRequest.prototype,'onreadystatechange',{
           // console.log('response', this.responseText, this.response);
           // console.log('response', this.responseText, this.response);
           mb.res = dealResponse(this.responseType,this.response);
+          mb.headers = this.getAllResponseHeaders(); 
+          mb.status = `${this.status} ${this.statusText}`; 
+          mb.time = Date.now() - mb.time; 
         }
       }
       fn(...args);
@@ -116,6 +123,9 @@ Object.defineProperty(window.XMLHttpRequest.prototype,'onload',{
         // console.log('response', this.responseText, this.response);
         // console.log('response', this.responseText, this.response);
         mb.res = dealResponse(this.responseType,this.response);
+        mb.headers = this.getAllResponseHeaders(); 
+        mb.status = `${this.status} ${this.statusText}`; 
+        mb.time = Date.now() - mb.time; 
       }
       fn(...args);
     });

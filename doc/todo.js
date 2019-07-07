@@ -20,9 +20,9 @@ Console
 Element 
 Network 
   Request Methods 
-  Hearders 
   Status 
   Time 
+  Hearders 
   可选择请求数据类型 
 Routes 
   system 

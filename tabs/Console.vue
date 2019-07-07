@@ -4,12 +4,12 @@
 <template lang="html"> 
 <section class="Console"> 
   <div class="options">
-    <div class="optTl pointer" @click="clearLogs"> 清空 </div>
     <div class="optFlts">
       <label class="optFlt" v-for="(itm,key) in filter" :key="key"> 
         <input type="checkbox" v-model="itm.value">{{itm.label}} 
       </label>
     </div>
+    <div class="optTl pointer" @click="clearLogs"> 清空 </div>
   </div>
   
   <div class="body" > 
@@ -34,7 +34,6 @@
 
 <script> 
 export default {
-  name: 'Console',
   data(){ 
     return {
       filter: {
