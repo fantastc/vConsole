@@ -4,7 +4,7 @@
 
 安装: 
 <pre>
-$ npm i -D vmconsole;
+$ npm i -D vmconsole
 </pre>
 
 使用: 
