@@ -11,8 +11,8 @@ $ npm i -D vmconsole
 <pre>
 // import Vue from 'vue'; // 依赖项目中的Vue  
 // import router from './router/index.js'; // 依赖项目中的路由 
-import VMC from "vmconsole/vmc/index.js"; // 引入 VMConsole  
-new VMC(Vue,router);                      // 初始化 VMConsole  
+import VMConsole from "vmconsole/vmc/index.js"; // 引入 VMConsole  
+VMConsole(Vue,router);                      // 初始化 VMConsole  
 </pre>
 
 
@@ -21,8 +21,8 @@ new VMC(Vue,router);                      // 初始化 VMConsole
 // import Vue from 'vue'; // 依赖项目中的Vue  
 // import router from './router/index.js'; // 依赖项目中的路由 
 if ( process.env.NODE_ENV!=='production' ) {
-   const VMC = require("vmconsole/vmc/index.js").default; 
-   new VMC(Vue,router);
+   const VMConsole = require("vmconsole/vmc/index.js").default; 
+   VMConsole(Vue,router);
  }
 </pre>
 
