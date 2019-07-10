@@ -1,7 +1,7 @@
 
-import './console.js';
-import './network.js';
-import './routes.js';
+import '../tabs/console/console.js';
+import '../tabs/network/network.js';
+import '../tabs/routes/routes.js';
 
 
 

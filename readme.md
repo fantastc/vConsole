@@ -21,8 +21,7 @@ VMConsole(Vue,router);                      // 初始化 VMConsole
 // import Vue from 'vue'; // 依赖项目中的Vue  
 // import router from './router/index.js'; // 依赖项目中的路由 
 if ( process.env.NODE_ENV!=='production' ) {
-   const VMConsole = require("vmconsole/vmc/index.js").default; 
-   VMConsole(Vue,router);
+   require("vmconsole/vmc/index.js").default(Vue,router); 
  }
 </pre>
 

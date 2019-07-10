@@ -18,10 +18,10 @@
         <span class="lineTl ">{{idx}}: </span>
         <div class="lineCt"> {{itm.method}}: {{itm.url}} </div>
        </div>
-      <div class="lineWp" style="display:block;">
+      <div class="lineWp" style="display:none;">
         <div class="line lineItems"> 
           <span class="lineItm"> Status: {{itm.status}} </span>
-          <span class="lineItm"> Time: {{itm.time}} </span>
+          <span class="lineItm"> Time: {{itm.time}} ms</span>
         </div>
         <div class="line "> 
           <span class="lineTl ">Req: </span>
@@ -68,7 +68,7 @@
 </template> 
 
 <script> 
-import {dealResponse,} from "../scripts/tool.js";
+import {dealResponse,} from "../../scripts/tool.js";
 export default {
   data(){ 
     return {
@@ -141,14 +141,11 @@ export default {
       xhr.send(this.ajax.req || null);
     },
   },
-  components: {
-    // XxxXxx: ()=>import('./xxx.vue'),  
-  },
 };
 </script> 
 
 <style scoped> 
-  @import "./common.css";
+  @import "../common.css";
   .Network {
     font-size: 12px;
     display: flex;

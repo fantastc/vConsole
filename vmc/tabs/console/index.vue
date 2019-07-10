@@ -34,7 +34,6 @@
 
 <script> 
 export default {
-  name: 'VMCConsole',
   data(){ 
     return {
       filter: {
@@ -62,13 +61,13 @@ export default {
     },
   },
   components: {
-    VMCLog: ()=>import('./log/VMCLog.vue'),
+    VMCLog: ()=>import('./VMCLog.vue'),
   },
 };
 </script> 
 
 <style scoped> 
-  @import "./common.css";
+  @import "../common.css";
   .Console {
     font-size: 13px;
   }

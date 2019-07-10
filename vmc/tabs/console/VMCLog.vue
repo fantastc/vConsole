@@ -2,12 +2,13 @@
   
 -->
 <template lang="html"> 
-<div v-if="logValue===false" class="_VMCObjLog" >
+<div v-if="logValue===true" class="_VMCObjLog" >
   <div class="_vmc_objTl" @click="showObjKeys">
     <span class="_vmc_objTlIcon" :data-rotate="isShow">▶</span>
     {{Object.prototype.toString.call(logVal).slice(8,-1)}}
   </div>
-  <VCMObjLog v-show="isShow" :objVal="currentObj"></VCMObjLog>
+  <VCMObjLog v-if="isShow" :objVal="logVal" ></VCMObjLog>
+  <!-- <VCMObjLog v-if="isShow" :objVal="currentObj" ></VCMObjLog> -->
 </div>
 <span v-else class="_VMCStrLog">{{logValue}}</span>
 </template> 
@@ -23,7 +24,7 @@ export default {
   },
   data(){
     return {
-      currentObj: '', 
+      // currentObj: '', 
       
       isShow: false, 
     };
@@ -37,7 +38,7 @@ export default {
       else if ( typeof this.logVal==='boolean' ) { return this.logVal+''; }
       else if ( typeof this.logVal==='function' ) { return this.logVal.toString(); }
       
-      return false;
+      return true;
     },
   },
   // beforeCreate(){
@@ -46,9 +47,9 @@ export default {
   methods: {
     showObjKeys(){
       this.isShow = !this.isShow; 
-      if (!this.currentObj) {
-        this.currentObj = this.logVal;
-      }
+      // if (!this.currentObj) {
+      //   this.currentObj = this.logVal;
+      // }
     },
   },
   components: { 

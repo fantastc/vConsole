@@ -53,7 +53,7 @@ export default {
 </script> 
 
 <style scoped> 
-  @import "./common.css";
+  @import "../common.css";
   .options {
     justify-content: space-between;
   }

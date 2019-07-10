@@ -1,25 +1,31 @@
 
 .options {
-  height: 3vh;
+  height: 4vh;
   display: flex;
   justify-content: flex-end;
 }
 .optTl {
   margin-left: 3em;
   padding: 0 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .optFlts {
   display: flex;
 }
 .optFlt {
   padding: 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .body {
   /* flex-grow: 1;  */
   /* flex-shrink: 0; */
   position: absolute;
-  top: 3vh;
+  top: 4vh;
   bottom: 15vh;
   left: 0;
   width: 100%;

@@ -53,11 +53,11 @@ export default {
   beforeCreate(){ },
   created(){ },
   components: {
-    Console: ()=>import('./tabs/Console.vue'),
-    Element: ()=>import('./tabs/Element.vue'),
-    Network: ()=>import('./tabs/Network.vue'),
-    Routes: ()=>import('./tabs/Routes.vue'),
-    Storage: ()=>import('./tabs/Storage.vue'),
+    Console: ()=>import('./tabs/Console/index.vue'),
+    Element: ()=>import('./tabs/Element/index.vue'),
+    Network: ()=>import('./tabs/Network/index.vue'),
+    Routes: ()=>import('./tabs/Routes/index.vue'),
+    Storage: ()=>import('./tabs/storage/index.vue'),
   },
 };
 </script> 
@@ -77,7 +77,7 @@ export default {
   }
   .header {
     background-color: #ccc;
-    height: 3.5vh;
+    height: 4.6vh;
     display: flex;
     justify-content: space-between;
     flex-grow: 0;
@@ -86,10 +86,12 @@ export default {
     box-sizing: border-box;
     cursor: pointer;
     font-weight: bold;
-    line-height: 1.6;
     text-align: center;
     border-bottom: 1.5px solid #ccc;
     flex-grow: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .activeCard {
     border-bottom: 1.5px solid #3399da;

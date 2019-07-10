@@ -9,14 +9,14 @@
   </div>
   <div class="body">
     <div class="root">
-      <Tag :node="rootEl" @updated="updatedCb"></Tag>
+      <ElemTag :node="rootEl" @updated="updatedCb"></ElemTag>
     </div>
   </div>
 </section> 
 </template> 
 
 <script> 
-import Tag from "./tags/Tag.vue";
+import ElemTag from "./ElemTag.vue";
 export default {
   data(){ 
     return {
@@ -87,7 +87,7 @@ export default {
         let el = window.document.firstElementChild
         el.normalize();
         this.rootEl = el;
-      },100)
+      })
     },
     isFold(){ },
     
@@ -97,13 +97,13 @@ export default {
     },
   },
   components: {
-    Tag,
+    ElemTag,
   },
 };
 </script> 
 
 <style scoped> 
-  @import "./common.css";
+  @import "../common.css";
   .options {
     justify-content: flex-end;
   }
