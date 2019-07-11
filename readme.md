@@ -16,7 +16,7 @@ VMConsole(Vue,router);                      // 初始化 VMConsole
 </pre>
 
 
-或者按需引入,非生产环境引入
+或者按需引入( 如 非生产环境引入 )
 <pre>
 // import Vue from 'vue'; // 依赖项目中的Vue  
 // import router from './router/index.js'; // 依赖项目中的路由 
