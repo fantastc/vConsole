@@ -22,6 +22,7 @@ Element
 Network 
   可选择请求数据类型 
 Routes 
+  打印路径变化 [localStorage固化] 
 Storage 
   Vuex store 
 */
