@@ -134,6 +134,7 @@ export default {
     flex-direction: column;
   }
   .listWrap {
+    box-sizing: border-box;
     flex-shrink: 0;
     position: relative;
   }
