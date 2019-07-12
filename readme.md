@@ -1,5 +1,5 @@
 <h1>VMConsole</h1>
-<h1>Vue Mobile Console: Vue项目的移动端调试控制台</h1>
+<h1>Vue Mobile Console: Vue项目移动端调试工具</h1>
 
 
 安装: 

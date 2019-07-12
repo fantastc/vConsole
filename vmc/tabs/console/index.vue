@@ -89,7 +89,7 @@ export default {
   
   /* .log { color: #2ab7fc; } */
   ._vmc_warn { color: yellow; }
-  ._vmc_error { color: red; }
+  ._vmc_error { color: #fe6868; }
 </style> 
 <style > 
 </style> 

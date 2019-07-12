@@ -24,7 +24,7 @@ Network
 Routes 
   打印路径变化 [localStorage固化] 
 Storage 
-  Vuex store 
+  Vuex store 完善 getters 
 */
 
 
