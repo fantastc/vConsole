@@ -1,30 +1,30 @@
-<!-- 控制台打印 
+<!-- Console tab页 
   
 -->
 <template lang="html"> 
-<section class="Console"> 
-  <div class="options">
-    <div class="optFlts">
-      <label class="optFlt" v-for="(itm,key) in filter" :key="key"> 
+<section class="_vmc_Console"> 
+  <div class="_vmc_options">
+    <div class="_vmc_optFlts">
+      <label class="_vmc_optFlt" v-for="(itm,key) in filter" :key="key"> 
         <input type="checkbox" v-model="itm.value">{{itm.label}} 
       </label>
     </div>
-    <div class="optTl pointer" @click="clearLogs"> 清空 </div>
+    <div class="_vmc_optTl pointer" @click="clearLogs"> 清空 </div>
   </div>
   
-  <div class="body" > 
-    <div class="bdItm" v-for="(itm,key) in logList" :key="key" 
+  <div class="_vmc_body" > 
+    <div class="_vmc_bdItm" v-for="(itm,key) in logList" :key="key" 
       v-show="filter[itm.type].value">
-      <span class="bdItmTl"> {{key}}: </span>
-      <div :class="['bdItmCt',itm.type]">
+      <span class="_vmc_bdItmTl"> {{key}}: </span>
+      <div :class="['_vmc_bdItmCt','_vmc_'+itm.type]">
         <VMCLog v-for="(val,key1) in itm.msgs" :key="key1" :logVal="val"></VMCLog>
       </div>
     </div>
   </div>
   
-  <div class="footer">
-    <textarea class="codeArea" v-model="jsStrCode"></textarea>
-    <div class="btns">
+  <div class="_vmc_footer">
+    <textarea class="_vmc_codeArea" v-model="jsStrCode"></textarea>
+    <div class="_vmc_btns">
       <button type="button" @click="clearCode">清空</button>
       <button type="button" @click="codeRun">执行</button>
     </div>
@@ -68,29 +68,28 @@ export default {
 
 <style scoped> 
   @import "../common.css";
-  .Console {
+  ._vmc_Console {
     font-size: 13px;
   }
   
-  .bdItm {
+  ._vmc_bdItm {
     border-bottom: 1px solid #ccc;
   }
-  .bdItmTl {
+  ._vmc_bdItmTl {
     color: #a0c7b6;
     position: absolute;
     top: 0; 
     left: 0; 
   }
-  .bdItmCt {
-  }
+  ._vmc_bdItmCt { }
   
-  .codeArea {
+  ._vmc_codeArea {
     flex-grow: 1;
   }
   
   /* .log { color: #2ab7fc; } */
-  .warn { color: yellow; }
-  .error { color: red; }
+  ._vmc_warn { color: yellow; }
+  ._vmc_error { color: red; }
 </style> 
 <style > 
 </style> 

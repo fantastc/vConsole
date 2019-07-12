@@ -1,8 +1,8 @@
-<!--  
+<!-- 对象打印组件 
   
 -->
 <template lang="html"> 
-<section class="VMCObjLog" v-if="objVal" > 
+<section class="_vmc_ObjLog" v-if="objVal" > 
   <div class="_vmc_objItm" v-for="(itm,key) in objVal" > 
     <div v-if="objValCheck(itm)===true" class="_vcm_obj_obj">
       <div class="_vmc_obj_objKey" @click="showObjKeys(key)"> 
@@ -50,7 +50,7 @@ export default {
 </script> 
 
 <style scoped> 
-  .VMCObjLog {
+  ._vmc_ObjLog {
     margin-left: 1em;
   }
   ._vmc_objTlIcon[data-rotate] {

@@ -1,39 +1,49 @@
-<!--  
+<!-- Routes tab页 
   
 -->
 <template lang="html"> 
-<section class="Routes"> 
-  <div class="options">
-    <button type="button" class="optBtn" @click="refresh">刷新</button>
-    <textarea class="flexgrow" rows="2" v-model="currentPageURL"></textarea>
-    <button type="button" class="optBtn" @click="clearURL">清空</button>
-    <button type="button" class="optBtn" @click="enterURL">访问</button>
+<section class="_vmc_Routes"> 
+  <div class="_vmc_options">
+    <button type="button" class="_vmc_optBtn" @click="refresh">刷新</button>
+    <textarea class="_vmc_urlInput flexgrow" v-model="currentPageURL"></textarea>
+    <button type="button" class="_vmc_optBtn" @click="clearURL">清空</button>
+    <button type="button" class="_vmc_optBtn" @click="enterURL">访问</button>
   </div>
-  <div class="body" > 
-    <div class="listWrap LW1">
-      <div class="listTl">
+  <div class="_vmc_body" > 
+    <div class="_vmc_listWrap _vmc_LW1">
+      <div class="_vmc_listTl">
         地址记录: 
-        <span class="listTlRit" @click="clearHistory">清空</span>
+        <span class="_vmc_listTlRit" @click="clearHistory">清空</span>
       </div>
-      <div class="listBd">
-        <div class="" v-for="(itm,key) in historyList" :key="key"> 
-          {{key}} <span class="">{{itm.type}}:</span>
+      <div class="_vmc_listBd">
+        <div class="_vmc_LBItm" v-for="(itm,key) in historyList" :key="key"> 
+          <span class="_vmc_LBITl">
+            <span> {{key}} </span>
+            <span class="colorMain"> {{itm.type}}: </span>
+          </span>
           <span class="">{{itm.url}} </span>
         </div>
       </div>
     </div>
-    <div class="listWrap LW2">
-      <div class="listTl"> 
+    <div class="_vmc_listWrap _vmc_LW2">
+      <div class="_vmc_listTl"> 
         项目目录: 
+        <span v-if="!$router">未传入参数 router,无路由数据</span>
       </div>
-      <div class="listBd">
-        <CatalogItem class="catalogItm" :paths="routesList"></CatalogItem>
+      <div class="_vmc_listBd">
+        <CatalogItem class="_vmc_catalogItm" :paths="routesList"></CatalogItem>
       </div>
     </div>
   </div>
-  <div class="footer indent"> 
-    <div class=""> navigator.appVersion: {{appVersion}}</div>
-    <div class=""> navigator.userAgent: {{userAgent}}</div>
+  <div class="_vmc_footer indent1"> 
+    <div class=""> 
+      <span class="colorMain">navigator.appVersion:</span>
+      {{appVersion}}
+    </div>
+    <div class=""> 
+      <span class="colorMain">navigator.userAgent:</span>
+      {{userAgent}}
+    </div>
   </div>
 </section> 
 </template> 
@@ -61,7 +71,6 @@ export default {
       userAgent: '',
     };
   },
-  computed: { },
   created(){
     this.updateURL({ type: 'pageLoad', });
     window.addEventListener("hashchange",this.updateURL);
@@ -69,7 +78,9 @@ export default {
     window.addEventListener("pushState",this.updateURL);
     window.addEventListener("replaceState",this.updateURL);
     
-    this.routesList = this.$router.options.routes;
+    if ( this.$router ) {
+      this.routesList = this.$router.options.routes;
+    }
     // this.addGlobalLink();
     
     this.appVersion = window.navigator.appVersion;
@@ -119,53 +130,68 @@ export default {
 
 <style scoped> 
   @import "../common.css";
-  .Routes {
-  }
-  .options {
+  ._vmc_Routes { }
+  ._vmc_options {
     height: 4.5vh;
+    align-items: center;
   }
-  .optBtn {
+  ._vmc_optBtn {
     flex-shrink: 0;
+    height: 100%;
+  }
+  ._vmc_urlInput {
+    height: 100%;
   }
   
-  .body {
+  ._vmc_body {
     top: 4.5vh;
     display: flex;
     flex-direction: column;
   }
-  .listWrap {
+  ._vmc_listWrap {
     box-sizing: border-box;
     flex-shrink: 0;
     position: relative;
   }
-  .LW1 {
+  ._vmc_LW1 {
     flex-basis: 40%;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #fff;
   }
-  .LW2 {
+  ._vmc_LW2 {
     flex-basis: 60%;
   }
-  .listTl { 
+  ._vmc_listTl { 
     margin: 0.1em 0; 
+    font-size: 16px;
   }
-  .listTlRit {
+  ._vmc_listTlRit {
     float: right;
     cursor: pointer;
   }
-  .listBd {
+  ._vmc_listBd {
     overflow: scroll;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed #aaa;
     position: absolute;
     top: 2em;
     left: 0; 
     bottom: 0;
     width: 100%;
   }
-  .catalogItm { margin-left: -1em; }
+  ._vmc_LBItm {
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+    margin-left: 1em;
+  }
+  ._vmc_LBITl {
+    text-indent: -1em;
+    margin-right: 0.5em;
+  }
+  ._vmc_catalogItm { margin-left: -1em; }
   
-  .footer {
-    border-top: 1px solid #ccc;
-    padding: 0 0.5em 0.5em 2em;
+  ._vmc_footer {
+    border-top: 2px solid #fff;
+    padding: 0 0.5em 0.5em 1em;
     box-sizing: border-box;
     font-size: 12px;
   }

@@ -1,20 +1,21 @@
-<!--  
+<!-- 目录项 
   
 -->
 <template> 
-<section class="catalogItem"> 
-  <div class="path" v-for="(val,key) in pathArr" :key="key" >
-    <div class="">
-      <span class="routeName" @click="clickPreIcon(val)">
-        {{ val.children.length ? '▶' : '▷'}}
-        {{ val.meta ? (val.meta.pageName||'未定义') : (val.name||'未命名') }} : 
+<section class="_vmc_catalogItem"> 
+  <div class="_vmc_pathWp" v-for="(val,key) in pathArr" :key="key" >
+    <div class="_vmc_pathItm">
+      <span class="_vmc_routeName " @click="isShowChildren(val)">
+        <span v-if="val.children.length===0" class="_vmc_iconArrow">▷</span>
+        <span v-else class="_vmc_iconArrow" :data-rotate="val.isShow" >▶</span>
+        <span class="colorMain"> {{ (val.meta&&val.meta.pageName) ? val.meta.pageName : (val.name||'未命名') }} : </span>
       </span>
-      <RouterLink class="link colorMain" :to="currentPath(val)" > 
+      <RouterLink class="_vmc_link " :to="currentPath(val)" > 
         {{ currentPath(val) }} 
       </RouterLink>
       <span class="pointer" @click="routerReplace(val)"> ◆◆◆ </span>
     </div>
-    <VMCCatalogItem v-if="isShowMore(val)" v-show="val.showChild" 
+    <VMCCatalogItem v-if="isShowMore(val)" v-show="val.isShow" 
       :paths="val.children" 
       :prePath="currentPath(val)">
     </VMCCatalogItem>
@@ -22,24 +23,21 @@
 </section> 
 </template> 
 
-
 <script> 
 export default {
   name: 'VMCCatalogItem',
   props: {
     paths: {
-      default(){ return [] }
+      default(){ return []; }
     },
     prePath: {
-      default(){ return '' }
+      default(){ return ''; }
     },
   },
   data(){ 
     return {
-      pathArr: []
+      pathArr: [], 
     }
-  },
-  computed: {
   },
   created(){
     // console.log( this.paths );
@@ -49,14 +47,13 @@ export default {
         path: val.path,
         meta: val.meta, 
         children: val.children || [] , 
-        showChild: false, 
+        isShow: false, 
       }
     } )
-
   },
   methods: {
-    clickPreIcon(val){
-      val.showChild = !val.showChild 
+    isShowChildren(val){
+      val.isShow = !val.isShow 
     },
     currentPath(val){
       // console.log( val.path, this.prePath, val.path,  );
@@ -79,18 +76,31 @@ export default {
 </script> 
 
 <style scoped> 
-  .routeName {
-    cursor: default;
-    /*user-select: none;*/
-  }
-  .path {
+  ._vmc_catalogItem { }
+  ._vmc_pathWp {
     margin: 4px 0 4px 1em;
   }
-  .link {
+  ._vmc_pathItm {
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
+  ._vmc_routeName {
+    /* flex-shrink: 0; */
+    /* cursor: default; */
+    /*user-select: none;*/
+  }
+  ._vmc_iconArrow {
+    display: inline-block;
+  }
+  ._vmc_iconArrow[data-rotate] {
+    transform: rotate(90deg);
+  }
+  ._vmc_link {
     display: inline-block;
     min-width: 5em;
     cursor: pointer;
-    text-decoration: none;
-    border-bottom: 1px solid ;
+    color: #fff;
+    /* text-decoration: underline; */
   }
 </style> 

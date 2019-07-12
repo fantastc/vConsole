@@ -1,4 +1,7 @@
 
+._vmc_ * {
+  font-size: 12px;
+}
 ._vmc_ textarea {
   box-sizing: border-box;
   width: 100%;
@@ -7,6 +10,9 @@
 ._vmc_ pre {
   margin: 0.2em 0; 
   padding: 0;
+}
+._vmc_ .ft0 {
+  font-size: 0;
 }
 ._vmc_ .colorRed {
   color: red;
@@ -20,8 +26,15 @@
 ._vmc_ .indent {
   text-indent: -2em;
 }
+._vmc_ .indent1 {
+  text-indent: -1em;
+}
 ._vmc_ .inline {
   display: inline;
+}
+._vmc_ .btn {
+  display: inline-block;
+  padding: 0.5em 1em;
 }
 ._vmc_ .rotate90 {
   display: inline-block;

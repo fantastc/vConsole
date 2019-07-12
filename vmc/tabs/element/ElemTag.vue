@@ -1,29 +1,35 @@
-<!--  
+<!-- 元素标签组件 
   
 -->
 <template lang="html"> 
 <!-- 元素节点 -->
-<div class="_vmc_elem" v-if="node.nodeType===1"> 
+<div v-if="node.nodeType===1" class="_vmc_elem"> 
   <template v-if="node.childNodes && node.childNodes.length>0">
-    <span class="_vmc_tagTitle"><span class="">▶</span>&lt;{{node.tagName | toLower}} 
+    <span class="_vmc_tagTitle"><span class="">▶</span>
+    <span class="_vmc_tagName color0">&lt;{{node.tagName | toLower}}</span> 
       <template v-if="node.attributes"> 
-        <span class="_vmc_tagAttr" v-for="(itm,key) in node.attributes">
-          {{itm.nodeName}}{{itm.nodeValue?'="'+itm.nodeValue+'"':''}} 
+        <span class="_vmc_tagAttr ft0" v-for="(itm,key) in node.attributes">
+          <span class="color1">{{itm.nodeName}}</span> 
+          <template v-if="itm.nodeValue">
+            <span>=</span> 
+            <span class="color2">{{'"'+itm.nodeValue+'"'}} </span>
+          </template>
         </span>
-      </template> &gt; 
-      <span class="_vmc_tagTitle_sub">... &lt;/{{node.tagName | toLower}}&gt;</span> 
+      </template> 
+      <span class="_vmc_tagName color0">&gt;</span> 
+      <span class="_vmc_tagName color0">... &lt;/{{node.tagName | toLower}}&gt;</span> 
     </span>
     <div class="_vmc_tagContent" style="display:none;" >
-      <VMCElemTag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" > </VMCElemTag>
-      &lt;/{{node.tagName | toLower}}&gt;
+      <VMCElemTag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" ></VMCElemTag>
+      <div class="_vmc_tagEnd color0">&lt;/{{node.tagName | toLower}}&gt; </div>
     </div>
   </template>
-  <div class="_vcm_outerHTML" v-else> {{node.outerHTML}} </div>
+  <div v-else class="_vcm_outerHTML color9"> {{node.outerHTML}} </div>
 </div> 
 <!-- 文本节点 -->
-<span class="_vmc_text" v-else-if="node.nodeType===3&&node.nodeValue.trim()">{{node.nodeValue}}</span>
+<span v-else-if="node.nodeType===3&&node.nodeValue.trim()" class="_vmc_text" >{{node.nodeValue}}</span>
 <!-- 注释节点 -->
-<span class="_vmc_comment" v-else-if="node.nodeType===8"> &lt;!-- {{node.nodeValue}} --&gt; </span>
+<span v-else-if="node.nodeType===8" class="_vmc_comment" >&lt;!-- {{node.nodeValue}} --&gt;</span>
 </template> 
 
 <script> 
@@ -33,10 +39,6 @@ export default {
     node: {
       default(){ return {};},
     },
-  },
-  data(){ 
-    return {
-    };
   },
   computed: {
     isFold(){
@@ -49,11 +51,9 @@ export default {
       return true;
     },
   },
-  watch: { },
   updated(){
     this.$emit('updated','');
   },
-  methods: { },
   filters: {
     toLower(val){
       if (val && val.length>0) {
@@ -69,15 +69,24 @@ export default {
 </script> 
 
 <style scoped> 
+  .color0 { color: #ff8ffc; }
+  .color1 { color: #ffa066; }
+  .color2 { color: #bcc1ec; }
+  .color9 { color: #e0e0e0; }
+  
   ._vmc_elem {
     margin-left: 1em;
   }
-  ._vmc_text, ._vmc_comment {
-    max-width: 100vw;
-    max-height: 50vh;
-    overflow: scroll;
-    display: inline-block;
+  ._vmc_tagName { }
+  ._vmc_tagEnd { 
     margin-left: 1em;
+  }
+  ._vmc_text, ._vmc_comment {
+    margin-left: 2em;
+    max-width: 100vw;
+    /* max-height: 50vh; */
+    overflow: auto;
+    display: inline-block;
   }
   ._vmc_tagTitle {
     white-space: nowrap;
@@ -91,6 +100,7 @@ export default {
   ._vcm_outerHTML {
     white-space: nowrap;
   }
+  ._vmc_tagAttr { }
 </style> 
 <style> 
 </style> 

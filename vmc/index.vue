@@ -3,15 +3,15 @@
 -->
 <template lang="html"> 
 <section class="_vmc_"> 
-  <div class="wrap" v-show="isShow">
-    <div class="header"> 
-      <div :class="['cardItm',activTabIdx===idx?'activeCard':'']" 
+  <div class="_vmc_wrap" v-show="isShow">
+    <div class="_vmc_header"> 
+      <div :class="['_vmc_cardItm',activTabIdx===idx?'_vmc_activeCard':'']" 
         @click="switchTab(idx)"
         v-for="(tab,idx) in tabList" :key="idx" > 
         {{tab}}
       </div>
     </div>
-    <div class="tabWp">
+    <div class="_vmc_tabWp">
       <component v-for="(itm,key) in tabList" :key="key" 
         :is="itm" v-show="key===activTabIdx">
       </component>
@@ -21,7 +21,7 @@
     </div>
   </div>
   
-  <div class="switchBtn" @click="switchConsole"> VMC </div>
+  <div class="_vmc_switchBtn" @click="isShowConsole"> VMC </div>
 </section> 
 </template> 
 
@@ -31,18 +31,12 @@ export default {
     return {
       isShow: false, 
       
-      tabList: [
-        'Console',
-        'Element',
-        'Network',
-        'Routes',
-        'Storage',
-      ],
+      tabList: [ 'Console', 'Element', 'Network', 'Routes', 'Storage', ],
       activTabIdx: 0, 
     };
   },
   methods: {
-    switchConsole(){ 
+    isShowConsole(){ 
       this.isShow = !this.isShow
     },
     
@@ -50,8 +44,6 @@ export default {
       this.activTabIdx = idx; 
     },
   },
-  beforeCreate(){ },
-  created(){ },
   components: {
     Console: ()=>import('./tabs/Console/index.vue'),
     Element: ()=>import('./tabs/Element/index.vue'),
@@ -63,8 +55,10 @@ export default {
 </script> 
 
 <style scoped> 
-  ._vmc_ { }
-  .wrap {
+  ._vmc_ { 
+    font-size: 0;
+  }
+  ._vmc_wrap {
     background-color: rgba(0, 0, 0, 0.6);
     width: 100vw;
     height: 100vh;
@@ -75,14 +69,15 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .header {
+  ._vmc_header {
     background-color: #ccc;
     height: 4.6vh;
     display: flex;
     justify-content: space-between;
     flex-grow: 0;
   }
-  .cardItm {
+  ._vmc_cardItm {
+    font-size: 16px;
     box-sizing: border-box;
     cursor: pointer;
     font-weight: bold;
@@ -93,12 +88,12 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  .activeCard {
+  ._vmc_activeCard {
     border-bottom: 1.5px solid #3399da;
     /* border-left: 1px solid #000;
     border-right: 1px solid #000; */
   }
-  .tabWp {
+  ._vmc_tabWp {
     color: #fff;
     height: 96.5vh;
     /* padding-top: 3.5vh;
@@ -107,7 +102,7 @@ export default {
     position: relative;
   }
   
-  .switchBtn {
+  ._vmc_switchBtn {
     background-color: #fff;
     position: fixed;
     z-index: 10000;

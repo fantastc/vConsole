@@ -1,8 +1,8 @@
-<!--  
+<!-- 值打印 
   
 -->
 <template lang="html"> 
-<div v-if="logValue===true" class="_VMCObjLog" >
+<div v-if="logValue===true" class="__vmc_Log" >
   <div class="_vmc_objTl" @click="showObjKeys">
     <span class="_vmc_objTlIcon" :data-rotate="isShow">▶</span>
     {{Object.prototype.toString.call(logVal).slice(8,-1)}}
@@ -10,7 +10,7 @@
   <VCMObjLog v-if="isShow" :objVal="logVal" ></VCMObjLog>
   <!-- <VCMObjLog v-if="isShow" :objVal="currentObj" ></VCMObjLog> -->
 </div>
-<span v-else class="_VMCStrLog">{{logValue}}</span>
+<span v-else class="_vmc_strLog">{{logValue}}</span>
 </template> 
 
 <script> 
@@ -59,7 +59,7 @@ export default {
 </script> 
 
 <style scoped> 
-  ._VMCStrLog {
+  ._vmc_strLog {
     display: inline-block;
     margin-left: 1em;
     max-width: 100vw;

@@ -1,14 +1,14 @@
-<!--  
+<!-- Element tab页 
   
 -->
 <template lang="html"> 
-<section class="Element"> 
-  <div class="options">
-    <button type="button" @click="isFold">展开/折叠</button>
-    <button type="button" @click="refresh">刷新</button>
+<section class="_vmc_Element"> 
+  <div class="_vmc_options">
+    <span class="btn pointer" @click="isFold">展开/折叠</span>
+    <span class="btn pointer" @click="refresh">刷新</span>
   </div>
-  <div class="body">
-    <div class="root">
+  <div class="_vmc_body">
+    <div class="_vmc_root">
       <ElemTag :node="rootEl" @updated="updatedCb"></ElemTag>
     </div>
   </div>
@@ -58,29 +58,29 @@ export default {
       
     })
     
-    this.adjustStyle();
+    // this.adjustStyle();
   },
   methods: {
     // 样式调整 
-    adjustStyle(){
-      Array.prototype.forEach.call(
-        this.$el.querySelectorAll("._vmc_tagContent"),
-        function(itm){
-          if ( !itm.querySelector("div") && itm.innerText.length<100 ) {
-            let tagTitle = itm.previousElementSibling;
-            tagTitle.setAttribute("class","_vmc_tagTitle_1");
-            tagTitle.removeChild(tagTitle.firstElementChild);
-            tagTitle.removeChild(tagTitle.lastElementChild);
-            
-            itm.style.display = 'inline';
-            let text = itm.querySelector("._vmc_text");
-            let comment = itm.querySelector("._vmc_comment");
-            if ( text ) { text.style.margin = '0'; }
-            if ( comment ) { comment.style.margin = '0'; }
-          }
-        }
-      )
-    },
+    // adjustStyle(){
+    //   Array.prototype.forEach.call(
+    //     this.$el.querySelectorAll("._vmc_tagContent"),
+    //     function(itm){
+    //       if ( !itm.querySelector("div") && itm.innerText.length<100 ) {
+    //         let tagTitle = itm.previousElementSibling;
+    //         tagTitle.setAttribute("class","_vmc_tagTitle_1");
+    //         tagTitle.removeChild(tagTitle.firstElementChild);
+    //         tagTitle.removeChild(tagTitle.lastElementChild);
+    // 
+    //         itm.style.display = 'inline';
+    //         let text = itm.querySelector("._vmc_text");
+    //         let comment = itm.querySelector("._vmc_comment");
+    //         if ( text ) { text.style.margin = '0'; }
+    //         if ( comment ) { comment.style.margin = '0'; }
+    //       }
+    //     }
+    //   )
+    // },
     refresh(){ 
       this.rootEl = {};
       setTimeout(()=>{
@@ -104,13 +104,13 @@ export default {
 
 <style scoped> 
   @import "../common.css";
-  .options {
+  ._vmc_options {
     justify-content: flex-end;
   }
-  .body {
+  ._vmc_body {
     bottom: 0; 
   }
-  .root {
+  ._vmc_root {
     margin-left: -1em;
     font-size: 12px;
     user-select: none;

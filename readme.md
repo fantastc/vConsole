@@ -9,19 +9,19 @@ $ npm i -D vmconsole
 
 使用: 
 <pre>
-// import Vue from 'vue'; // 依赖项目中的Vue  
-// import router from './router/index.js'; // 依赖项目中的路由 
-import VMConsole from "vmconsole/vmc/index.js"; // 引入 VMConsole  
-VMConsole(Vue,router);                      // 初始化 VMConsole  
+// import Vue from 'vue';  // 依赖项目中的Vue  
+// import router from './router/index.js';  // 依赖项目中的路由 
+// import store from './store/store.js';  // 依赖项目中的状态管理 
+import VMConsole from "vmconsole/vmc/index.js";  // 引入 VMConsole  
+// 初始化 VMConsole 
+VMConsole(Vue,router,store); // Vue 必填;  router、store可选  
 </pre>
 
 
-或者按需引入( 如 非生产环境引入 )
+或者按需引入 (如非生产环境引入) 
 <pre>
-// import Vue from 'vue'; // 依赖项目中的Vue  
-// import router from './router/index.js'; // 依赖项目中的路由 
 if ( process.env.NODE_ENV!=='production' ) {
-   require("vmconsole/vmc/index.js").default(Vue,router); 
+   require("vmconsole/vmc/index.js").default(Vue,router,store); 
  }
 </pre>
 

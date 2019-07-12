@@ -1,27 +1,30 @@
 
-.options {
+._vmc_options {
+  font-size: 14px;
   height: 4vh;
   display: flex;
   justify-content: flex-end;
 }
-.optTl {
+._vmc_optTl {
+  font-size: 14px;
   margin-left: 3em;
   padding: 0 1em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.optFlts {
+._vmc_optFlts {
   display: flex;
 }
-.optFlt {
+._vmc_optFlt {
+  font-size: 14px;
   padding: 0 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.body {
+._vmc_body {
   /* flex-grow: 1;  */
   /* flex-shrink: 0; */
   position: absolute;
@@ -32,14 +35,14 @@
   overflow: scroll;
   outline: 1px solid #000;
 }
-.bdItm {
+._vmc_bdItm {
   box-sizing: border-box;
   padding: 0.5em 0 0.5em 1.5em;
   /* text-indent: -1em; */
   position: relative;
 }
 
-.footer {
+._vmc_footer {
   height: 15vh;
   width: 100%; 
   position: fixed; 
