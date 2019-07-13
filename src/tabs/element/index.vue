@@ -34,10 +34,10 @@ export default {
       let klass1 = evt.target.getAttribute("class");
       let kalss2 = evt.target.parentElement.getAttribute("class");
       let _line = null; 
-      if (klass1==='_vmc_tagTitle') {
+      if (klass1.includes("_vmc_tagTitle")) {
         _line = evt.target;
       }
-      else if (kalss2==='_vmc_tagTitle') {
+      else if (kalss2.includes('_vmc_tagTitle')) {
         _line = evt.target.parentElement;
       }
       if ( !_line ) { return ; }

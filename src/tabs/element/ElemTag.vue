@@ -5,21 +5,22 @@
 <!-- 元素节点 -->
 <div v-if="node.nodeType===1" class="_vmc_elem ft0"> 
   <template v-if="node.childNodes && node.childNodes.length>0">
-    <span class="_vmc_tagTitle"><span class="">▶</span>
-    <span class="_vmc_tagName color0">&lt;{{node.tagName | toLower}}</span> 
+    <div class="_vmc_tagTitle ft0">
+      <span class="">▶</span>
+      <span class="_vmc_tagName color0">&lt;{{node.tagName | toLower}}</span> 
       <template v-if="node.attributes"> 
-        <span class="_vmc_tagAttr " v-for="(itm,key) in node.attributes">
+        <span class="_vmc_tagAttr ft0" v-for="(itm,key) in node.attributes">
+          <span>&nbsp;</span>
           <span class="color1">{{itm.nodeName}}</span> 
           <template v-if="itm.nodeValue">
             <span>=</span> 
-            <span class="color2">{{'"'+itm.nodeValue+'"'}} </span>
+            <span class="color2">{{'"'+itm.nodeValue+'"'}}</span>
           </template>
-          <span>&nbsp;</span>
         </span>
       </template> 
       <span class="_vmc_tagNameSE color0">&gt;</span> 
       <span class="_vmc_tagName color0">... &lt;/{{node.tagName | toLower}}&gt;</span> 
-    </span>
+    </div>
     <div class="_vmc_tagContent" style="display:none;" >
       <VMCElemTag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" ></VMCElemTag>
       <div class="_vmc_tagEnd color0">&lt;/{{node.tagName | toLower}}&gt; </div>
@@ -77,9 +78,6 @@ export default {
   
   ._vmc_elem {
     margin-left: 10px;
-  }
-  ._vmc_tagNameSE { 
-    margin-left: -0.5em;
   }
   ._vmc_tagEnd { 
     margin-left: 1em;
