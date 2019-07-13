@@ -9,14 +9,14 @@
   </div>
   <div class="_vmc_body">
     <div class="_vmc_root">
-      <ElemTag :node="rootEl" @updated="updatedCb"></ElemTag>
+      <VMCElemTag :node="rootEl" @updated="updatedCb"></VMCElemTag>
     </div>
   </div>
 </section> 
 </template> 
 
 <script> 
-import ElemTag from "./ElemTag.vue";
+import VMCElemTag from "./ElemTag.vue";
 export default {
   data(){ 
     return {
@@ -93,11 +93,11 @@ export default {
     
     updatedCb(){
       // console.log('components updated');
-      this.adjustStyle();
+      // this.adjustStyle();
     },
   },
   components: {
-    ElemTag,
+    VMCElemTag,
   },
 };
 </script> 
