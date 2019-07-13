@@ -151,7 +151,7 @@ export default {
     display: flex;
   }
   ._vmc_mapKey {
-    padding: 5px 0;
+    padding: 5px 0 5px 4px;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
     flex-basis: 20%;
