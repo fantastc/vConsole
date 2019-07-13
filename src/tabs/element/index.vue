@@ -4,7 +4,7 @@
 <template lang="html"> 
 <section class="_vmc_Element"> 
   <div class="_vmc_options">
-    <span class="btn pointer" @click="isFold">展开/折叠</span>
+    <!-- <span class="btn pointer" @click="isFold">展开/折叠</span> -->
     <span class="btn pointer" @click="refresh">刷新</span>
   </div>
   <div class="_vmc_body">
@@ -30,32 +30,43 @@ export default {
   },
   mounted(){ 
     // 元素展开/折叠 
-    this.$el.addEventListener("click",function(evt){
-      let klass1 = evt.target.getAttribute("class");
-      let kalss2 = evt.target.parentElement.getAttribute("class");
-      let _line = null; 
-      if (klass1.includes("_vmc_tagTitle")) {
-        _line = evt.target;
-      }
-      else if (kalss2.includes('_vmc_tagTitle')) {
-        _line = evt.target.parentElement;
-      }
-      if ( !_line ) { return ; }
+    this.$el.addEventListener("click",(evt)=>{
+      let _class = '_vmc_tagS';
       
-      let _arrow = _line.firstElementChild;  
-      let _endTag = _line.lastElementChild; 
-      let _unfold = _line.nextElementSibling;  
-      if ( _unfold.style.display === 'none' ) {
-        _arrow.setAttribute("class","rotate90");
-        _endTag.style.display = 'none';
-        _unfold.style.display = 'block';
-      }
-      else {
-        _arrow.setAttribute("class","");
-        _endTag.style.display = 'inline-block';
-        _unfold.style.display = 'none';
+      let elem1 = evt.target;
+      let klass1 = elem1.getAttribute("class") || '';
+      if (klass1.includes(_class)) { 
+        this.foldHandle(elem1)
+        return ; 
       }
       
+      let elem11 = elem1.previousElementSibling || elem1; 
+      let klass11 = elem11.getAttribute("class") || '';
+      if (klass11.includes(_class)) { 
+        this.foldHandle(elem11)
+        return ; 
+      }
+      
+      let elem2 = elem1.parentElement || elem1; 
+      let klass2 = elem2.getAttribute("class") || '';
+      if (klass2.includes(_class)) { 
+        this.foldHandle(elem2)
+        return ; 
+      }
+      
+      let elem3 = elem2.parentElement || elem1; 
+      let klass3 = elem3.getAttribute("class") || '';
+      if (klass3.includes(_class)) { 
+        this.foldHandle(elem3)
+        return ; 
+      }
+      
+      
+      let klass9 = elem1.getAttribute("class") || '';
+      if (klass9.includes('_vmc_tagE')) { 
+        this.foldHandle(elem2.firstElementChild);
+        return ; 
+      }
     })
     
     // this.adjustStyle();
@@ -81,6 +92,24 @@ export default {
     //     }
     //   )
     // },
+    foldHandle(tag){
+      let _arrow = tag.firstElementChild;  
+      let _content1 = tag.nextElementSibling;  
+      let _content2 = _content1.nextElementSibling;  
+      let _tagEnd = _content2.nextElementSibling;  
+      if ( _content2.style.display==='none' ) {
+        _arrow.setAttribute("class","rotate90");
+        _content1.style.display = 'none';
+        _content2.style.display = 'block';
+        _tagEnd.setAttribute("data-unfold","");
+      }
+      else {
+        _arrow.setAttribute("class","");
+        _content1.style.display = 'inline';
+        _content2.style.display = 'none';
+        _tagEnd.removeAttribute("data-unfold");
+      }
+    },
     refresh(){ 
       this.rootEl = {};
       setTimeout(()=>{

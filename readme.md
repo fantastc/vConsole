@@ -30,11 +30,11 @@ if ( process.env.NODE_ENV!=='production' ) {
 <pre> 注意: 依赖于webpack的打包, 请不要将该包排除在打包范围外; </pre>
 
 
-<img src="./doc/console.png" > 
-<img src="./doc/element.png" > 
-<img src="./doc/network.png" > 
-<img src="./doc/routes.png" > 
-<img src="./doc/storage.png" > 
+<img src="./doc/console.jpg" > 
+<img src="./doc/element.jpg" > 
+<img src="./doc/network.jpg" > 
+<img src="./doc/routes.jpg" > 
+<img src="./doc/storage.jpg" > 
 
 
 

@@ -52,16 +52,16 @@
         <option value="GET">GET</option>
       </select>
       <button class="_vmc_ftBtn"  type="button" @click="ajaxSend">提交</button>
-      <textarea name="name" v-model="ajax.url"></textarea>
+      <textarea name="name" v-model="ajax.url" placeholder="here is request url"></textarea>
       <button class="_vmc_ftBtn" type="button" @click="clearAjaxURL">清空</button>
     </div>
     <div class="_vmc_ftLine ftl2">
       <!-- 优化: 可选择请求数据类型 -->
-      <textarea name="name" row="2" v-model="ajax.req"></textarea>
+      <textarea name="name" row="2" v-model="ajax.req" placeholder="here is request data"></textarea>
       <button class="_vmc_ftBtn"  type="button" @click="clearAjaxReq">清空</button>
     </div>
     <div class="_vmc_ftLine _vmc_ftl3">
-      <textarea name="name" disabled v-model="ajax.res"></textarea>
+      <textarea name="name" disabled v-model="ajax.res" placeholder="here will show response"></textarea>
     </div>
   </div>
 </section> 

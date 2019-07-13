@@ -1,6 +1,6 @@
 {
   "name": "vmconsole",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "vue mobile console",
   "main": "src/index.js",
   "directories": {

@@ -4,10 +4,10 @@
 <template lang="html"> 
 <!-- 元素节点 -->
 <div v-if="node.nodeType===1" class="_vmc_elem ft0"> 
-  <template v-if="node.childNodes && node.childNodes.length>0">
-    <div class="_vmc_tagTitle ft0">
+  <div v-if="node.childNodes && node.childNodes.length>0" class="_vcm_tag">
+    <div class="_vmc_tagS ft0">
       <span class="">▶</span>
-      <span class="_vmc_tagName color0">&lt;{{node.tagName | toLower}}</span> 
+      <span class="_vmc_tagNameSS color0">&lt;{{node.tagName | toLower}}</span> 
       <template v-if="node.attributes"> 
         <span class="_vmc_tagAttr ft0" v-for="(itm,key) in node.attributes">
           <span>&nbsp;</span>
@@ -19,13 +19,13 @@
         </span>
       </template> 
       <span class="_vmc_tagNameSE color0">&gt;</span> 
-      <span class="_vmc_tagName color0">... &lt;/{{node.tagName | toLower}}&gt;</span> 
     </div>
-    <div class="_vmc_tagContent" style="display:none;" >
+    <span class="_vmc_tagCt1 color0">...</span> 
+    <div class="_vmc_tagCt2" style="display:none;" >
       <VMCElemTag v-for="(itm,key) in node.childNodes" :key="key" :node="itm" ></VMCElemTag>
-      <div class="_vmc_tagEnd color0">&lt;/{{node.tagName | toLower}}&gt; </div>
     </div>
-  </template>
+    <span class="_vmc_tagE color0">&lt;/{{node.tagName | toLower}}&gt; </span>
+  </div>
   <div v-else class="_vcm_outerHTML color9"> {{node.outerHTML}} </div>
 </div> 
 <!-- 文本节点 -->
@@ -79,7 +79,7 @@ export default {
   ._vmc_elem {
     margin-left: 10px;
   }
-  ._vmc_tagEnd { 
+  ._vmc_tagE[data-unfold] { 
     margin-left: 1em;
   }
   ._vmc_text, ._vmc_comment {
@@ -89,17 +89,19 @@ export default {
     overflow: auto;
     display: inline-block;
   }
-  ._vmc_tagTitle {
-    white-space: nowrap;
+  ._vmc_tagS {
+    display: inline;
+    word-break: break-all;
+    /* white-space: nowrap; */
   }
-  ._vmc_tagContent {
+  ._vmc_tagCt2 {
     /* white-space: nowrap; */
     /* max-width: 100vw;
     max-height: 100vh;
     overflow: scroll; */
   }
   ._vcm_outerHTML {
-    white-space: nowrap;
+    word-break: break-all;
   }
   ._vmc_tagAttr { }
 </style> 

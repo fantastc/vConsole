@@ -29,7 +29,7 @@
   </div>
   
   <div class="_vmc_footer">
-    <textarea class="_vmc_codeArea" v-model="jsStrCode"></textarea>
+    <textarea class="_vmc_codeArea" v-model="jsStrCode" placeholder="here input js code to run"></textarea>
     <div class="_vmc_btns">
       <button type="button" @click="clearCode">清空</button>
       <button type="button" @click="codeRun">执行</button>

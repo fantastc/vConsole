@@ -17,20 +17,23 @@
       </span>
       <span class="btn pointer _vmc_refresh" @click="refreshFn">刷新</span>
     </div>
-    <div class="_vmc_opItem" v-show="activIdx===key"
-      v-for="(itm,key) in optionList" :key="key"> 
-      <template v-if="itm.map" >
-        <div class="_vmc_mapItm" v-for="(itm1,key1) in itm.map" :key="key1"> 
-          <span class="_vmc_mapKey colorMain">{{key1}}</span> 
-          <pre class="_vmc_mapVal">{{itm1}} </pre>
-        </div>
-      </template>
-      <template v-else-if="itm.list">
-        <div  class="_vmc_mapItm" v-for="(itm1,key1) in itm.list" :key="key1"> 
-          <span class="_vmc_mapKey colorMain">{{itm1.name}}</span> 
-          <pre class="_vmc_mapVal">{{itm1.value}} </pre>
-        </div>
-      </template>
+    <div class="_vmc_opItms">
+      <div class="_vmc_opItem" v-show="activIdx===key"
+        v-for="(itm,key) in optionList" :key="key"> 
+        <template v-if="itm.map" >
+          <div class="_vmc_mapItm" v-for="(itm1,key1) in itm.map" :key="key1"> 
+            <span class="_vmc_mapKey colorMain">{{key1}}</span> 
+            <pre v-if="itm.preShow" class="_vmc_mapVal">{{itm1}} </pre>
+            <div v-else class="_vmc_mapVal">{{itm1}} </div>
+          </div>
+        </template>
+        <template v-else-if="itm.list">
+          <div  class="_vmc_mapItm" v-for="(itm1,key1) in itm.list" :key="key1"> 
+            <span class="_vmc_mapKey colorMain">{{itm1.name}}</span> 
+            <div class="_vmc_mapVal">{{itm1.value}} </div>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
   <!-- <div class="footer"> </div> -->
@@ -46,11 +49,16 @@ export default {
         { id: 'Cookies', list: [
           // { name: '', value:'', }
         ], },
-        { id: 'LocalStorage', map: {} },
-        { id: 'SessionStorage', map: {} },
-        { id: 'VuexStore', isHideClear:true, map: {
+        { id: 'Local', preShow: true, map: {} },
+        { id: 'Session', preShow: true, map: {} },
+        { id: 'VuexStore', isHideClear:true, preShow: true, map: {
           'VMConsole提示': '未传入参数 store, 导致无法获取 VuexStore 数据',
         },},
+        { id: 'OtherMsg', isHideClear:true, map: {
+          'navigator.appName': window.navigator.appName,
+          'navigator.appVersion': window.navigator.appVersion,
+          'navigator.userAgent': window.navigator.userAgent,
+        } },
       ],
       activIdx: 0,
     };
@@ -65,16 +73,19 @@ export default {
     fillCookies(){
       this.optionList[0].list = Cookie.all();
     },
-    fillLocalStorage(){
+    fillLocal(){
       this.optionList[1].map = window.localStorage;
     },
-    fillSessionStorage(){
+    fillSession(){
       this.optionList[2].map = window.sessionStorage;
     },
     fillVuexStore(){
       if (this.$store) {
         this.optionList[3].map = this.$store.state;
       }
+    },
+    fillOtherMsg(){
+      // console.log('todo');
     },
     clearCookies(){
       Cookie.all().forEach( itm=>{
@@ -83,10 +94,10 @@ export default {
       })
       Cookie.all(true); 
     },
-    clearLocalStorage(){
+    clearLocal(){
       window.localStorage.clear();
     },
-    clearSessionStorage(){
+    clearSession(){
       window.sessionStorage.clear();
     },
     
@@ -120,11 +131,18 @@ export default {
   }
   ._vmc_body { 
     bottom: 0; 
+    display: flex;
+    flex-direction: column;
   }
   ._vmc_handleBtns {
-    border-bottom: 1px solid #fff;
+    flex-shrink: 0;
     display: flex;
     justify-content: flex-end;
+    border-bottom: 1px solid #fff;
+  }
+  ._vmc_opItms {
+    flex-grow: 1;
+    overflow-y: auto;
   }
   ._vmc_mapItm {
     word-break: break-all;

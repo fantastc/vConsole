@@ -12,7 +12,7 @@
   <div class="_vmc_body" > 
     <div class="_vmc_listWrap _vmc_LW1">
       <div class="_vmc_listTl">
-        地址记录: 
+        浏览记录: 
         <span class="_vmc_listTlRit" @click="clearHistory">清空</span>
       </div>
       <div class="_vmc_listBd">
@@ -35,16 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="_vmc_footer indent1"> 
-    <div class=""> 
-      <span class="colorMain">navigator.appVersion:</span>
-      {{appVersion}}
-    </div>
-    <div class=""> 
-      <span class="colorMain">navigator.userAgent:</span>
-      {{userAgent}}
-    </div>
-  </div>
+  <!-- <div class="_vmc_footer indent1"> </div> -->
 </section> 
 </template> 
 
@@ -83,8 +74,7 @@ export default {
     }
     // this.addGlobalLink();
     
-    this.appVersion = window.navigator.appVersion;
-    this.userAgent = window.navigator.userAgent;
+
   },
   methods: {
     updateURL(evt){
@@ -145,6 +135,7 @@ export default {
   
   ._vmc_body {
     top: 4.5vh;
+    bottom: 0;
     display: flex;
     flex-direction: column;
   }
@@ -190,10 +181,12 @@ export default {
   ._vmc_catalogItm { margin-left: -1em; }
   
   ._vmc_footer {
+    word-break: break-all;
     border-top: 2px solid #fff;
     padding: 0 0.5em 0.5em 1em;
     box-sizing: border-box;
     font-size: 12px;
+    overflow-y: auto;
   }
 </style> 
 <style > 
