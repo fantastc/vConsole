@@ -1,6 +1,6 @@
 
-<img src="./doc/logo.png" > 
-<h1>VMConsole</h1>
+ 
+<h1><img src="./doc/logo.png" >VMConsole</h1>
 <h1>Vue Mobile Console: Vue项目移动端调试工具</h1>
 
 
