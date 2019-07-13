@@ -18,6 +18,7 @@ VMC'Vue Mobile Console',Vue项目的移动端调试工具
 Console 
   Info 
   样式调整 
+  Promise未捕获错误打印
 Element 
 Network 
   可选择请求数据类型 

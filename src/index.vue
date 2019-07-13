@@ -27,6 +27,7 @@
 
 <script> 
 export default {
+  name: 'VMConsole',
   data(){ 
     return {
       isShow: false, 

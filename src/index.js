@@ -7,7 +7,14 @@ export default function(Vue,router,store){
   div.id = '_vmc'
   document.body.appendChild(div);
   let options = { render: h=>h(index), }
-  if ( router ) { options.router = router; }
+  if ( router ) { 
+    options.router = router; 
+    options._unRouter = false;
+  }
+  else {
+    // 解决未传入 router 时, 使用 this.$router 判断报错的 bug 
+    options._unRouter = true; 
+  }
   if ( store ) { options.store = store; }
   new Vue(options).$mount('#_vmc');
 }

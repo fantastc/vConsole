@@ -92,10 +92,7 @@ window.XMLHttpRequest.prototype.send = new Proxy(window.XMLHttpRequest.prototype
     let mb = window._netList.find((itm,idx)=>{ 
       return itm._xhr === context;    
     })
-    if (mb) { 
-      mb.req = _req; 
-      // console.log('req', _req);
-    }
+    if (mb) { mb.req = _req; }
     
 
     return target.call(context,...args );

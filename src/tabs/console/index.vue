@@ -5,7 +5,9 @@
 <section class="_vmc_Console"> 
   <div class="_vmc_options">
     <div class="_vmc_optFlts">
-      <label class="_vmc_optFlt" v-for="(itm,key) in filter" :key="key"> 
+      <label class="_vmc_optFlt" 
+        v-if="itm.label"
+        v-for="(itm,key) in filter" :key="key"> 
         <input type="checkbox" v-model="itm.value">{{itm.label}} 
       </label>
     </div>
@@ -13,7 +15,11 @@
   </div>
   
   <div class="_vmc_body" > 
-    <div class="_vmc_bdItm" v-for="(itm,key) in logList" :key="key" 
+    <div class="_vmc_link" v-for="(itm,key) in linkList" >
+      <a :href="itm.link" target="_blank">{{itm.msg}}</a>
+    </div>
+    <div class="_vmc_bdItm" 
+      v-for="(itm,key) in logList" :key="key" 
       v-show="filter[itm.type].value">
       <span class="_vmc_bdItmTl"> {{key}}: </span>
       <div :class="['_vmc_bdItmCt','_vmc_'+itm.type]">
@@ -36,8 +42,13 @@
 export default {
   data(){ 
     return {
+      linkList: [
+        // { msg: '', link: '', },
+      ],
+      
       filter: {
         log: { value: true, label: 'Log', }, 
+        info: { value: true, label: 'Info', }, 
         warn: { value: true, label: 'Warn', }, 
         error: { value: true, label: 'Error', }, 
       },
@@ -47,10 +58,25 @@ export default {
       jsStrCode: '',
     };
   },
+  created(){
+    // 首次使用 
+    if (localStorage && !localStorage._vmc_) {
+      this.linkList.push({
+        msg: '觉得好用的话, 来点个★吧! ╰(*´︶`*)╯',
+        link: 'https://github.com/fntst/VMConsole',
+      })
+      this.linkList.push({
+        msg: '或者来提issues, 解决bug或增加所需功能',
+        link: 'https://github.com/fntst/VMConsole/issues',
+      })
+      localStorage._vmc_ = '1';
+    }
+  },
   methods: {
     clearLogs(){
       window._logList = []; 
       this.logList = window._logList; 
+      this.linkList = [];
     },
     
     clearCode(){
@@ -72,6 +98,14 @@ export default {
     font-size: 13px;
   }
   
+  ._vmc_link {
+    padding: 5px 8px;
+  }
+  ._vmc_link a{
+    color: #fff;
+    font-size: 13px;
+  }
+  
   ._vmc_bdItm {
     border-bottom: 1px solid #ccc;
   }
@@ -88,6 +122,7 @@ export default {
   }
   
   /* .log { color: #2ab7fc; } */
+  ._vmc_info { color: #ccc; }
   ._vmc_warn { color: yellow; }
   ._vmc_error { color: #fe6868; }
 </style> 

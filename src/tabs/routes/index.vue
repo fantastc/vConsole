@@ -28,9 +28,9 @@
     <div class="_vmc_listWrap _vmc_LW2">
       <div class="_vmc_listTl"> 
         项目目录: 
-        <span v-if="!$router">未传入参数 router,无路由数据</span>
+        <span v-if="$root.$options._unRouter">未传入参数 router,无路由数据</span>
       </div>
-      <div class="_vmc_listBd">
+      <div class="_vmc_listBd" v-if="!$root.$options._unRouter">
         <CatalogItem class="_vmc_catalogItm" :paths="routesList"></CatalogItem>
       </div>
     </div>
@@ -57,7 +57,7 @@ export default {
       historyList: [
         // { type: 'KW', url: '', },
       ], 
-      // 使用 localStorage 记录 
+      // todo: 使用 localStorage 记录 
       
       routesList: [
         // {
@@ -78,7 +78,7 @@ export default {
     window.addEventListener("pushState",this.updateURL);
     window.addEventListener("replaceState",this.updateURL);
     
-    if ( this.$router ) {
+    if ( !this.$root.$options._unRouter ) {
       this.routesList = this.$router.options.routes;
     }
     // this.addGlobalLink();
