@@ -176,8 +176,23 @@ export let Cookie = (function(){
   return cookies;
 })();
 
-
-
+// 检测是否为可查看的对象 
+export function checkObjVal(obj,prop){
+  let val = '';
+  try { val = obj[prop]; } 
+  catch (e) { return '无法显示的属性值' } 
+  
+  if ( val==='' ) { return '\"\"'; }
+  else if ( val===null ) { return 'null'; }
+  else if ( typeof val==='undefined' ) { return 'undefined'; }
+  else if ( typeof val==='boolean' ) { return val+''; }
+  else if ( typeof val==='number' ) { return val+''; }
+  else if ( typeof val==='string' ) { return val; }
+  else if ( typeof val==='function' ) { return val.toString(); }
+  else if ( Object.getOwnPropertyNames(val).length===0 ) { return '{empty}'; }
+  
+  return '待处理的对象';
+}
 
 
 

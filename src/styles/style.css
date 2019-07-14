@@ -2,6 +2,10 @@
 ._vmc_ * {
   font-size: 12px;
 }
+._vmc_ *[data-rotate] {
+  display: inline-block;
+  transform: rotate(90deg);
+}
 ._vmc_ textarea {
   box-sizing: border-box;
   width: 100%;
@@ -23,6 +27,9 @@
 ._vmc_ .pointer {
   cursor: pointer;
 }
+._vmc_ ._vmc_border {
+  border: 1px solid #ccc;
+}
 ._vmc_ .indent {
   text-indent: -2em;
 }
@@ -39,6 +46,10 @@
 ._vmc_ .rotate90 {
   display: inline-block;
   transform: rotate(90deg);
+}
+._vmc_ .unfoldIcon {
+  display: inline-block;
+  width: 1em;
 }
 
 ._vmc_ .flexgrow {

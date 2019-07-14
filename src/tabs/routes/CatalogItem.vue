@@ -6,8 +6,8 @@
   <div class="_vmc_pathWp" v-for="(val,key) in pathArr" :key="key" >
     <div class="_vmc_pathItm">
       <span class="_vmc_routeName " @click="isShowChildren(val)">
-        <span v-if="val.children.length===0" class="_vmc_iconArrow">▷</span>
-        <span v-else class="_vmc_iconArrow" :data-rotate="val.isShow" >▶</span>
+        <span v-if="val.children.length===0" class="unfoldIcon">▷</span>
+        <span v-else class="unfoldIcon" :data-rotate="val.isShow" >▶</span>
         <span class="colorMain"> {{ (val.meta&&val.meta.pageName) ? val.meta.pageName : (val.name||'未命名') }} : </span>
       </span>
       <RouterLink class="_vmc_link " :to="currentPath(val)" > 
@@ -15,7 +15,7 @@
       </RouterLink>
       <span class="pointer" @click="routerReplace(val)"> ◆◆◆ </span>
     </div>
-    <VMCCatalogItem v-if="isShowMore(val)" v-show="val.isShow" 
+    <VMCCatalogItem v-if="val.children && val.children.length>0" v-show="val.isShow" 
       :paths="val.children" 
       :prePath="currentPath(val)">
     </VMCCatalogItem>
@@ -68,9 +68,6 @@ export default {
       let path = this.currentPath(val);
       this.$router.replace(path);
     },
-    isShowMore(val){
-      return val.children && val.children.length>0
-    },
   },
 }
 </script> 
@@ -89,12 +86,6 @@ export default {
     /* flex-shrink: 0; */
     /* cursor: default; */
     /*user-select: none;*/
-  }
-  ._vmc_iconArrow {
-    display: inline-block;
-  }
-  ._vmc_iconArrow[data-rotate] {
-    transform: rotate(90deg);
   }
   ._vmc_link {
     display: inline-block;

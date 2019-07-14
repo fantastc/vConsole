@@ -6,7 +6,7 @@
 <div v-if="node.nodeType===1" class="_vmc_elem ft0"> 
   <div v-if="node.childNodes && node.childNodes.length>0" class="_vcm_tag">
     <div class="_vmc_tagS ft0">
-      <span class="">▶</span>
+      <span class="unfoldIcon">▶</span>
       <span class="_vmc_tagNameSS color0">&lt;{{node.tagName | toLower}}</span> 
       <template v-if="node.attributes"> 
         <span class="_vmc_tagAttr ft0" v-for="(itm,key) in node.attributes">

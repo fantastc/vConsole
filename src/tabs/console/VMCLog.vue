@@ -4,7 +4,7 @@
 <template lang="html"> 
 <div v-if="logValue===true" class="__vmc_Log" >
   <div class="_vmc_objTl" @click="showObjKeys">
-    <span class="_vmc_objTlIcon" :data-rotate="isShow">▶</span>
+    <span class="unfoldIcon" :data-rotate="isShow">▶</span>
     {{Object.prototype.toString.call(logVal).slice(8,-1)}}
   </div>
   <VCMObjLog v-if="isShow" :objVal="logVal" ></VCMObjLog>
@@ -14,7 +14,7 @@
 </template> 
 
 <script> 
-import {dealObject, } from "../../scripts/tool.js";
+// import {dealObject, } from "../../scripts/tool.js";
 export default {
   name: 'VMCLog',
   props: {
@@ -53,7 +53,7 @@ export default {
     },
   },
   components: { 
-    VCMObjLog: ()=>import('./VMCObjLog.vue'), 
+    VCMObjLog: ()=>import('../../components/VMCObjLog.vue'), 
   },
 };
 </script> 
@@ -64,12 +64,8 @@ export default {
     margin-left: 1em;
     max-width: 100vw;
     max-height: 50vw;
-    overflow: scroll;
+    overflow: auto;
     vertical-align: bottom;
-  }
-  ._vmc_objTlIcon[data-rotate] {
-    display: inline-block;
-    transform: rotate(90deg);
   }
 </style> 
 <style> 

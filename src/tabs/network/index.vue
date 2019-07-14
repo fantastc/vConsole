@@ -13,10 +13,12 @@
   </div>
   
   <div class="_vmc_body" > 
-    <div class="_vmc_bdItm" v-for="(itm,idx) in netList" :key="idx" v-show="filter[itm.type].value">
-      <div class="_vmc_line _vmc_url">
+    <div class="_vmc_bdItm" 
+      v-for="(itm,idx) in netList" :key="idx" 
+      v-show="filter[itm.type].value">
+      <div class="_vmc_url">
         <span class="_vmc_lineTl ">{{idx}}: </span>
-        <div class=""> {{itm.method}}: {{itm.url}} </div>
+        <div class="_vmc_reqUrl"> {{itm.method}}: {{itm.url}} </div>
        </div>
       <div class="_vmc_lineWp" style="display:none;">
         <div class="_vmc_line _vmc_lineItems"> 
@@ -24,19 +26,23 @@
           <span class="_vmc_lineItm"> Time: {{itm.time}} ms</span>
         </div>
         <div class="_vmc_line "> 
-          <span class="_vmc_lineTl ">Req: </span>
+          <!-- <span class="_vmc_lineTl ">Req: </span> -->
           <div class="_vmc_lineCt ">
             <pre>{{itm.req}}</pre> 
           </div>
         </div>
         <div class="_vmc_line "> 
-          <span class="_vmc_lineTl ">Hds: </span>
+          <!-- <span class="_vmc_lineTl ">Hds: </span> -->
           <div class="_vmc_lineCt ">
-            <pre>{{itm.headers}}</pre> 
+            <div class="_vmc_hd_itm" 
+              v-for="(itm1,key1) in dealReqHeaders(itm.headers)" :key="key1">
+              <span class="_vmc_hd_itm_key">{{key1}}: </span>  
+              <span class="_vmc_hd_itm_val">{{itm1}}</span>
+            </div>
           </div>
         </div>
         <div class="_vmc_line "> 
-          <span class="_vmc_lineTl ">Res: </span>
+          <!-- <span class="_vmc_lineTl ">Res: </span> -->
           <div class="_vmc_lineCt ">
             <pre>{{itm.res}}</pre> 
           </div>
@@ -88,12 +94,13 @@ export default {
     };
   },
   mounted(){
+    let klass = '_vmc_url'
     this.$el.addEventListener("click",(evt)=>{
       let _title = null; 
-      if (evt.target.getAttribute("class")==='_vmc_line _vmc_url') {
+      if (evt.target.getAttribute("class")===klass) {
         _title = evt.target;
       }
-      else if (evt.target.parentElement.getAttribute("class")==='_vmc_line _vmc_url') {
+      else if (evt.target.parentElement.getAttribute("class")===klass) {
         _title = evt.target.parentElement;
       }
       if (!_title) { return ; }
@@ -109,6 +116,14 @@ export default {
     })
   },
   methods: {
+    dealReqHeaders(headers){
+      let _map = {}; 
+      headers.split(/\n/).filter( itm=>itm).forEach((itm,idx)=>{
+        let arr = itm.split(': ')
+        _map[arr[0]] = arr.slice(1).join(': ');
+      })
+      return _map; 
+    },
     clearLogs(){
       window._netList = []
       this.netList = window._netList; 
@@ -157,17 +172,20 @@ export default {
   
   ._vmc_bdItm {
     padding-left: 0;
+    padding-bottom: 0;
     border-bottom: 1px solid #ccc;
   }
   ._vmc_url {
     color: #2ab7fc;
     text-decoration: underline;
-    overflow: scroll;
+    padding-left: 1.5em;
+    padding-bottom: 0.5em;
+    box-sizing: border-box;
+    position: relative;
   }
   ._vmc_line {
     box-sizing: border-box;
-    padding-left: 2.5em;
-    margin-bottom: 0.5em;
+    margin: 0.1em 1.5em 0.1em;
     position: relative;
   }
   ._vmc_lineItems {
@@ -180,11 +198,35 @@ export default {
   ._vmc_lineTl {
     color: gold;
     position: absolute;
-    top: 0; left: 0; 
-    z-index: -1;
+    top: 0; left: 0em; 
+  }
+  ._vmc_reqUrl {
+    word-break: break-all;
   }
   ._vmc_lineCt {
+    min-height: 1em;
     overflow-x: auto;
+    border: 1px solid #ccc;
+    margin: 1em 0;
+  }
+  ._vmc_hd_itm {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-start;
+  }
+  ._vmc_hd_itm:last-child {
+    border-bottom: none;
+  }
+  ._vmc_hd_itm_key {
+    padding: 1px 3px;
+    flex-basis: 33%;
+    flex-shrink: 0;
+    border-right: 1px solid #ccc;
+  }
+  ._vmc_hd_itm_val {
+    padding: 1px 3px;
+    flex-basis: 66%;
+    word-break: break-all;
   }
   
   ._vmc_ftLine {

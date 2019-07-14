@@ -2,17 +2,19 @@
   
 -->
 <template lang="html"> 
-<section class="_vmc_ObjLog" v-if="objVal" > 
+<section v-if="objVal" class="_vmc_ObjLog" > 
   <div class="_vmc_objItm" v-for="(prop,idx) in objMap" > 
-    <div v-if="objValCheck(prop)==='待处理'" class="_vcm_obj_obj">
-      <div class="_vmc_obj_objKey ft0" @click="showObjKeys(prop)"> 
-        <span class="_vmc_objTlIcon" :data-rotate="showMap[prop+'--']">▶</span> 
+    <div v-if="objValCheck(prop)==='待处理的对象'" class="_vcm_obj_obj">
+      <div class="_vmc_obj_objKey ft0" @click="showObjKeys(prop+'--')"> 
+        <span v-if="objVal[prop]" class="unfoldIcon" 
+          :data-rotate="showMap[prop+'--']">▶
+        </span> 
         <span class="color1"> {{prop}}: </span>
         <span> {{dealObjType(prop)}} </span>
       </div>
       <VMCObjLog v-if="showMap[prop+'--']" :objVal="objVal[prop]" ></VMCObjLog>
     </div>
-    <div v-else-if="objValCheck(prop)!=='删除'" class="_vcm_obj_prop ft0"> 
+    <div v-else-if="objValCheck(prop)!=='无法显示的属性值'" class="_vcm_obj_prop ft0"> 
       <span class="_vcm_obj_prop_key color1">{{prop}} :</span>
       <span> {{objValCheck(prop)}} </span>
     </div>
@@ -21,6 +23,7 @@
 </template> 
 
 <script> 
+import {checkObjVal, } from "../scripts/tool.js";
 export default {
   name: 'VMCObjLog',
   props: {
@@ -29,35 +32,31 @@ export default {
     },
   },
   data(){
-    let _map = {}
+    let _map = {};
     Object.getOwnPropertyNames(this.objVal).forEach( prop=>{
       _map[prop+'--'] = false; // 解决bug: prop和vue自定义的属性冲突
-    })
+    });
     return {
       showMap: _map, 
-    }
+    };
   },
   computed: {
     objMap(){
-      return Object.getOwnPropertyNames(this.objVal).sort( (itm1,itm2)=>{
-        return itm1>itm2 ? 1 : -1;
-      })
+      return Object.getOwnPropertyNames(this.objVal)
+      // .sort( (itm1,itm2)=> (itm1>itm2 ? 1 : -1) )
+    },
+  },
+  watch: {
+    objVal(val){
+      this.showMap = {}; 
+      Object.getOwnPropertyNames(val).forEach( prop=>{
+        this.showMap[prop+'--'] = false; 
+      });
     },
   },
   methods: {
     objValCheck(prop){
-      let val = '';
-      try { val = this.objVal[prop]; } 
-      catch (e) { return '删除' } 
-      
-      if ( val===undefined ) { return 'undefined'; }
-      else if ( val===null ) { return 'null'; }
-      else if ( typeof val==='number' ) { return val+''; }
-      else if ( typeof val==='string' ) { return val; }
-      else if ( typeof val==='boolean' ) { return val+''; }
-      else if ( typeof val==='function' ) { return val.toString(); }
-      
-      return '待处理';
+      return checkObjVal(this.objVal,prop)
     },
     dealObjType(prop){
       try {
@@ -68,7 +67,8 @@ export default {
       } 
     },
     showObjKeys(prop){
-      this.showMap[prop+'--']= !this.showMap[prop+'--'];
+      this.showMap[prop]= !this.showMap[prop];
+      this.$forceUpdate(); // 修复bug: 状态已改变,但未更新视图 
     },
   },
 };
@@ -88,10 +88,6 @@ export default {
   }
   ._vcm_obj_prop_key {
     margin-right: 0.5em;
-  }
-  ._vmc_objTlIcon[data-rotate] {
-    display: inline-block;
-    transform: rotate(90deg);
   }
 </style> 
 <style > 
