@@ -32,6 +32,7 @@ if ( process.env.NODE_ENV!=='production' ) {
 
 <img src="./doc/console.jpg" > 
 <img src="./doc/element.jpg" > 
+<img src="./doc/element1.jpg" > 
 <img src="./doc/network.jpg" > 
 <img src="./doc/routes.jpg" > 
 <img src="./doc/storage.jpg" > 
