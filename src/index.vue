@@ -46,10 +46,10 @@ export default {
     },
   },
   components: {
-    Console: ()=>import('./tabs/Console/index.vue'),
-    Element: ()=>import('./tabs/Element/index.vue'),
-    Network: ()=>import('./tabs/Network/index.vue'),
-    Routes: ()=>import('./tabs/Routes/index.vue'),
+    Console: ()=>import('./tabs/console/index.vue'),
+    Element: ()=>import('./tabs/element/index.vue'),
+    Network: ()=>import('./tabs/network/index.vue'),
+    Routes: ()=>import('./tabs/routes/index.vue'),
     Storage: ()=>import('./tabs/storage/index.vue'),
   },
 };
