@@ -60,17 +60,17 @@ export default {
   },
   created(){
     // 首次使用 
-    if (localStorage && !localStorage._vmc_) {
-      this.linkList.push({
-        msg: '觉得好用的话, 来点个★吧! ╰(*´︶`*)╯',
-        link: 'https://github.com/fntst/VMConsole',
-      })
-      this.linkList.push({
-        msg: '或者来提issues, 解决bug或增加所需功能',
-        link: 'https://github.com/fntst/VMConsole/issues',
-      })
-      localStorage._vmc_ = '1';
-    }
+    // if (localStorage && !localStorage._vmc_) {
+    //   this.linkList.push({
+    //     msg: '觉得好用的话, 来点个★吧! ╰(*´︶`*)╯',
+    //     link: 'https://github.com/fntst/VMConsole',
+    //   })
+    //   this.linkList.push({
+    //     msg: '或者来提issues, 解决bug或增加所需功能',
+    //     link: 'https://github.com/fntst/VMConsole/issues',
+    //   })
+    //   localStorage._vmc_ = '1';
+    // }
   },
   methods: {
     clearLogs(){
