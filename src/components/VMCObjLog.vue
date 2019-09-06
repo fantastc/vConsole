@@ -3,7 +3,7 @@
 -->
 <template lang="html"> 
 <section v-if="objVal" class="_vmc_ObjLog" > 
-  <div class="_vmc_objItm" v-for="(prop,idx) in objKeysMap" > 
+  <div class="_vmc_objItm" v-for="(prop,idx) in objKeys" > 
     <div v-if="objValCheck(prop)==='待处理的对象'" class="_vcm_obj_obj">
       <div class="_vmc_obj_objKey ft0" @click="showObjKeys(prop+'--')"> 
         <span v-if="objVal[prop]" class="unfoldIcon" 
@@ -41,7 +41,7 @@ export default {
     };
   },
   computed: {
-    objKeysMap(){
+    objKeys(){
       return getObjKeys(this.objVal);
       // .sort( (itm1,itm2)=> (itm1>itm2 ? 1 : -1) )
     },
