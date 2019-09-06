@@ -1,5 +1,5 @@
 /* Network ---------------------------------------------------------------- */
-import { dealResponse, } from "../../scripts/tool.js";
+import { dealResponse, } from "../../util.js";
 
 window._netList = [ // AJAX请求 
   // {

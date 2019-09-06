@@ -23,7 +23,7 @@
 </template> 
 
 <script> 
-import {checkObjVal, } from "../scripts/tool.js";
+import {checkObjVal, } from "../util.js";
 export default {
   name: 'VMCObjLog',
   props: {

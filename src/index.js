@@ -1,12 +1,18 @@
 // 用于移动端调试使用 
-import './scripts/preset.js';
-import index from "./index.vue";
 
+// preset 
+import './tabs/console/console.js';
+import './tabs/network/network.js';
+import './tabs/routes/routes.js';
+import './tabs/storage/storage.js';
+
+
+import vmc from "./vmc.vue";
 export default function(Vue,router,store){
   let div = document.createElement("div")
   div.id = '_vmc'
   document.body.appendChild(div);
-  let options = { render: h=>h(index), }
+  let options = { render: h=>h(vmc), }
   if ( router ) { 
     options.router = router; 
     options._unRouter = false;

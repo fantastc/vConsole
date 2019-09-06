@@ -110,7 +110,68 @@ export default {
   }
 </style> 
 <style > 
-@import "./styles/style.css";
+  ._vmc_ * {
+    font-size: 12px;
+  }
+  ._vmc_ *[data-rotate] {
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+  ._vmc_ textarea {
+    box-sizing: border-box;
+    width: 100%;
+    display: inline-block;
+  }
+  ._vmc_ pre {
+    margin: 0.2em 0; 
+    padding: 0;
+  }
+  ._vmc_ .ft0 {
+    font-size: 0;
+  }
+  ._vmc_ .colorRed {
+    color: #f66565;
+  }
+  ._vmc_ .colorMain {
+    color: #2ab7fc;
+  }
+  ._vmc_ .pointer {
+    cursor: pointer;
+  }
+  ._vmc_ ._vmc_border {
+    border: 1px solid #ccc;
+  }
+  ._vmc_ .indent {
+    text-indent: -2em;
+  }
+  ._vmc_ .indent1 {
+    text-indent: -1em;
+  }
+  ._vmc_ .inline {
+    display: inline;
+  }
+  ._vmc_ .btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+  }
+  ._vmc_ .rotate90 {
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+  ._vmc_ .unfoldIcon {
+    display: inline-block;
+    width: 1em;
+  }
+
+  ._vmc_ .flexgrow {
+    flex-grow: 1; 
+  }
+  ._vmc_ .alignCenter {
+    align-items: center;
+  }
+  ._vmc_ .justifyCenter {
+    justify-content: center;
+  }
 </style> 
 
 

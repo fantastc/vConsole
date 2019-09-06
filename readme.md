@@ -12,17 +12,26 @@ $ npm i -D vmconsole
 
 使用: 
 ```
-// import Vue from 'vue';  // 依赖项目中的Vue  
-// import router from './router/index.js';  // 依赖项目中的路由 
-// import store from './store/index.js';  // 依赖项目中的状态管理 
-import VMConsole from "vmconsole";  // 引入 VMConsole  
+// import Vue from 'vue';                   // 依赖项目中的Vue 
+// import router from './router/index.js';  // 依赖项目中的router 
+// import store from './store/index.js';    // 依赖项目中的store 
+// new Vue({                                // 项目中的Vue实例化 
+//   el: '#app',
+//   router,
+//   store,
+//   components: { App },
+//   template: '<App/>'
+// })
+
+// 引入 VMConsole  
+import VMConsole from "vmconsole";  
 // 初始化 VMConsole 
 VMConsole(Vue,router,store); // Vue 必填;  router、store可选  
 ```
 
 
-或者按需引入 (如非生产环境引入) 
 ```
+// 或者按需引入 (如非生产环境引入) 
 if ( process.env.NODE_ENV!=='production' ) {
    require("vmconsole").default(Vue,router,store); 
  }

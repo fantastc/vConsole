@@ -14,7 +14,6 @@
 </template> 
 
 <script> 
-// import {dealObject, } from "../../scripts/tool.js";
 import VCMObjLog from '../../components/VMCObjLog.vue';
 export default {
   name: 'VMCLog',

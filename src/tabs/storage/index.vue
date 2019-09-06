@@ -41,7 +41,7 @@
 </template> 
 
 <script> 
-import {Cookie, } from "../../scripts/tool.js";
+import {Cookie, } from "../../util.js";
 export default {
   data(){ 
     return {

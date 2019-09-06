@@ -42,7 +42,7 @@
 </template> 
 
 <script> 
-import {checkObjVal, } from "../../scripts/tool.js";
+import {checkObjVal, } from "../../util.js";
 import VMCElemTag from "./ElemTag.vue";
 import VMCCpnt from "./Cpnt.vue";
 import VMCObjLog from '../../components/VMCObjLog.vue';

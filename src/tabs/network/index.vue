@@ -74,7 +74,7 @@
 </template> 
 
 <script> 
-import {dealResponse,} from "../../scripts/tool.js";
+import {dealResponse,} from "../../util.js";
 export default {
   data(){ 
     return {
