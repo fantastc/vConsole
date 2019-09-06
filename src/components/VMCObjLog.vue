@@ -3,7 +3,7 @@
 -->
 <template lang="html"> 
 <section v-if="objVal" class="_vmc_ObjLog" > 
-  <div class="_vmc_objItm" v-for="(prop,idx) in objMap" > 
+  <div class="_vmc_objItm" v-for="(prop,idx) in objKeysMap" > 
     <div v-if="objValCheck(prop)==='待处理的对象'" class="_vcm_obj_obj">
       <div class="_vmc_obj_objKey ft0" @click="showObjKeys(prop+'--')"> 
         <span v-if="objVal[prop]" class="unfoldIcon" 
@@ -23,7 +23,7 @@
 </template> 
 
 <script> 
-import {checkObjVal, } from "../util.js";
+import {checkObjVal, getObjKeys } from "../util.js";
 export default {
   name: 'VMCObjLog',
   props: {
@@ -33,7 +33,7 @@ export default {
   },
   data(){
     let _map = {};
-    Object.getOwnPropertyNames(this.objVal).forEach( prop=>{
+    getObjKeys(this.objVal).forEach( prop=>{
       _map[prop+'--'] = false; // 解决bug: prop和vue自定义的属性冲突
     });
     return {
@@ -41,15 +41,15 @@ export default {
     };
   },
   computed: {
-    objMap(){
-      return Object.getOwnPropertyNames(this.objVal)
+    objKeysMap(){
+      return getObjKeys(this.objVal);
       // .sort( (itm1,itm2)=> (itm1>itm2 ? 1 : -1) )
     },
   },
   watch: {
     objVal(val){
       this.showMap = {}; 
-      Object.getOwnPropertyNames(val).forEach( prop=>{
+      getObjKeys(this.objVal).forEach( prop=>{
         this.showMap[prop+'--'] = false; 
       });
     },

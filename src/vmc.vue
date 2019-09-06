@@ -18,11 +18,19 @@
     </div>
   </div>
   
-  <div class="_vmc_switchBtn" @click="isShowConsole"> VMC </div>
+  <div class="_vmc_switchBtn" ref="_vmc_switchBtn" 
+    @touchmove="touchmoveFn" 
+    :style="{ left:btn.x, top:btn.y}"
+    @touchstart="touchstartFn"
+    @touchend="touchendFn"
+    @click="isShowConsole" > 
+    VMC 
+  </div>
 </section> 
 </template> 
 
 <script> 
+import {getObjKeys, } from "./util.js";
 import Console from "./tabs/console/index.vue";
 import Element from './tabs/element/index.vue';
 import Network from './tabs/network/index.vue';
@@ -37,11 +45,73 @@ export default {
       
       tabList: [ 'Console', 'Element', 'Network', 'Routes', 'Storage', ],
       activTabIdx: 0, 
+      
+      btn: { 
+        w: 20, 
+        h: 20, 
+        
+        x: 0,
+        y: 0,
+        
+        maxX: 100,
+        maxY: 100, 
+      },
     };
   },
+  mounted(){
+    this.$nextTick(()=>{
+      this.btn.w = this.$refs._vmc_switchBtn.clientWidth;
+      this.btn.h = this.$refs._vmc_switchBtn.clientHeight;
+      
+      this.btn.maxX = window.innerWidth - this.btn.w;
+      this.btn.maxY = window.innerHeight - this.btn.h;
+      
+      if ( localStorage.btnPosX && localStorage.btnPosY ) {
+        this.btn.x = localStorage.btnPosX + 'px'
+        this.btn.y = localStorage.btnPosY + 'px'
+      }
+      else {
+        this.btn.x = this.btn.maxX - 10 + 'px';
+        this.btn.y = this.btn.maxY -10 +'px';
+      }
+      
+    })
+    
+  },
   methods: {
-    isShowConsole(){ 
+    isShowConsole(evt){ 
       this.isShow = !this.isShow
+    },
+    touchstartFn(evt){ 
+      // let pos = evt.touches[0];
+      // console.log(pos); 
+    },
+    touchendFn(evt){ 
+      // let pos = evt.changedTouches[0];
+      // let x = pos.clientX-this.btn.w/2;
+      // let y = pos.clientY-this.btn.h/2;
+    },
+    touchmoveFn(evt){ 
+      let position = evt.touches[0];
+      let x = position.clientX-this.btn.w/2;
+      let y = position.clientY-this.btn.h/2;
+      if (x>0 && x < this.btn.maxX && y>0 && y < this.btn.maxY ) {
+        this.btn.x = x + 'px';
+        this.btn.y = y + 'px';
+        
+        this.throttle(()=>{
+          localStorage.btnPosX = x;
+          localStorage.btnPosY = y;
+        })
+      }
+      
+      
+    },
+    throttle(fn){
+      clearTimeout(this.throttle.id);
+      this.throttle.id = setTimeout(()=>{
+        fn();
+      },800)
     },
     
     switchTab(idx){
@@ -100,13 +170,18 @@ export default {
   }
   
   ._vmc_switchBtn {
-    background-color: #fff;
+    background-color: #2ab7fc;
+    color: #fff;
     position: fixed;
     z-index: 10000;
-    right: 1vw;
-    bottom: 1vw;
-    padding: 0.5vw;
-    outline: 1px solid #ccc;
+    /* padding: 0.8vw 1.2vw; */
+    width: 12vw;
+    height: 8vw;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style> 
 <style > 

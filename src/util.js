@@ -189,8 +189,16 @@ export function checkObjVal(obj,prop){
   else if ( typeof val==='number' ) { return val+''; }
   else if ( typeof val==='string' ) { return val; }
   else if ( typeof val==='function' ) { return val.toString(); }
-  else if ( Object.getOwnPropertyNames(val).length===0 ) { return '{empty}'; }
+  else if ( getObjKeys(val).length===0 ) { return '{empty}'; }
   
   return '待处理的对象';
 }
+
+// 获取对象的所有属性的列表[包括不可枚举属性] 
+export function getObjKeys(obj){
+  let list = new Set();
+  for(var key in obj){ list.add(key) };
+  Object.getOwnPropertyNames(obj).forEach(key=>{ list.add(key) })
+  return [...list];
+} 
 
