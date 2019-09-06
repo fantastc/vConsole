@@ -45,7 +45,9 @@
 import {checkObjVal, } from "../../scripts/tool.js";
 import VMCElemTag from "./ElemTag.vue";
 import VMCCpnt from "./Cpnt.vue";
+import VMCObjLog from '../../components/VMCObjLog.vue';
 export default {
+  components: { VMCElemTag, VMCCpnt, VMCObjLog, },
   data(){ 
     return {
       options: {
@@ -196,11 +198,6 @@ export default {
     showData(itm){
       itm.isShow = !itm.isShow; 
     },
-  },
-  components: {
-    VMCElemTag,
-    VMCCpnt,
-    VMCObjLog: ()=>import('../../components/VMCObjLog.vue'),
   },
 };
 </script> 

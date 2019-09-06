@@ -81,7 +81,10 @@ export default {
     },
     fillVuexStore(){
       if (this.$store) {
-        this.optionList[3].map = this.$store.state;
+        this.optionList[3].map = {
+          ...this.$store.state,
+          ...this.$store.getters,
+        };
       }
     },
     fillOtherMsg(){

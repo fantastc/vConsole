@@ -40,7 +40,9 @@
 </template> 
 
 <script> 
+import CatalogItem from './CatalogItem.vue';
 export default {
+  components: { CatalogItem, },
   data(){ 
     return {
       currentPageURL: location.href,
@@ -111,9 +113,6 @@ export default {
         document.body.appendChild(anhor); 
       }
     },
-  },
-  components: {
-    CatalogItem: ()=>import('./CatalogItem.vue'),
   },
 };
 </script> 

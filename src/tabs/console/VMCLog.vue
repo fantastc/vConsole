@@ -15,8 +15,10 @@
 
 <script> 
 // import {dealObject, } from "../../scripts/tool.js";
+import VCMObjLog from '../../components/VMCObjLog.vue';
 export default {
   name: 'VMCLog',
+  components: { VCMObjLog, },
   props: {
     logVal: {
       default(){ return '默认值为undefined'; },
@@ -51,9 +53,6 @@ export default {
       //   this.currentObj = this.logVal;
       // }
     },
-  },
-  components: { 
-    VCMObjLog: ()=>import('../../components/VMCObjLog.vue'), 
   },
 };
 </script> 

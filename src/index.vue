@@ -15,9 +15,6 @@
       <component v-for="(itm,key) in tabList" :key="key" 
         :is="itm" v-show="key===activTabIdx">
       </component>
-      <!-- <Console v-show="activTabIdx===0"></Console>
-      <Network v-show="activTabIdx===1"></Network>
-      <Location v-show="activTabIdx===2"></Location> -->
     </div>
   </div>
   
@@ -26,8 +23,14 @@
 </template> 
 
 <script> 
+import Console from "./tabs/console/index.vue";
+import Element from './tabs/element/index.vue';
+import Network from './tabs/network/index.vue';
+import Routes from './tabs/routes/index.vue';
+import Storage from './tabs/storage/index.vue';
 export default {
   name: 'VMConsole',
+  components: { Console, Element, Network, Routes, Storage, },
   data(){ 
     return {
       isShow: false, 
@@ -44,13 +47,6 @@ export default {
     switchTab(idx){
       this.activTabIdx = idx; 
     },
-  },
-  components: {
-    Console: ()=>import('./tabs/console/index.vue'),
-    Element: ()=>import('./tabs/element/index.vue'),
-    Network: ()=>import('./tabs/network/index.vue'),
-    Routes: ()=>import('./tabs/routes/index.vue'),
-    Storage: ()=>import('./tabs/storage/index.vue'),
   },
 };
 </script> 

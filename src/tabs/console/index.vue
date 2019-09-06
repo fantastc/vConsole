@@ -39,7 +39,9 @@
 </template> 
 
 <script> 
+import VMCLog from './VMCLog.vue';
 export default {
+  components: { VMCLog, },
   data(){ 
     return {
       linkList: [
@@ -85,9 +87,6 @@ export default {
     codeRun(){
       console.log( '执行结果:', window.eval( this.jsStrCode ) );
     },
-  },
-  components: {
-    VMCLog: ()=>import('./VMCLog.vue'),
   },
 };
 </script> 
